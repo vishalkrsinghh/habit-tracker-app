@@ -1,57 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register HabbitTracker</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
     <style>
-        .logsin{
+        * {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+
+        .logsin {
             display: flex;
             gap: 20px;
         }
-        .form2{
+
+        .form1{
+            display: flex;
+            justify-content: center;
+        }
+        .form2 {
             display: none;
         }
-        .logsin :first-child{
+
+        .logsin :first-child {
             border-bottom: 3px solid blue;
         }
-        h3{
+
+        h3 {
             padding-bottom: 5px;
+            cursor: pointer;
+        }
+
+        input {
+            outline: none;
+            background: transparent;
+            padding: 2px 5px;
+            border: 1px solid black;
+            height: 35px;
+        }
+        .div {
+            position: relative;
+            margin: 35px 0px;
+        }
+
+        label {
+            position: absolute;
+            pointer-events: none;
+            opacity: .8;
+            left: 0;
+            font-size: 15px;
+            padding: 5px;
+            margin-left: 3px;
+        }
+
+        input:focus+label,input:valid+label {
+            transform: translateY(-10px);
+            background-color: white;
+            opacity: 1;
+            font-size: 12px;
+            padding: 0px 6px;
+        }
+        input:focus{
+            border-color: aquamarine;
+        }
+
+        @media only screen and (max-width:340px) {
+            body {
+                font-size: 12px;
+            }
         }
     </style>
 
     <script src="/js/register.js" defer></script>
 </head>
+
 <body>
-    
+
     <div class="logsin">
-        <h3 > Sign Up </h3>
-        <h3 > Sign In </h3>
+        <h3> Sign Up </h3>
+        <h3> Sign In </h3>
     </div>
 
     <div class="form1">
 
         <form action="/createUser" method="post">
 
-            <div>
-                <label for="name"> Name: </label>
+            <div class="div">
                 <input type="text" name="name" id="name" required>
+                <label for="name"> Name: </label>
             </div>
-            <div>
+            <div class="div">
+                <input type="text" name="email" id="email" required>
                 <label for="email"> Email: </label>
-                <input type="email" name="email" id="email" required>
             </div>
-            <div>
-                <label for="password"> Password: </label>
+            <div class="div">
                 <input type="password" name="password" id="password" required>
+                <label for="password"> Password: </label>
             </div>
-            <div>
-                <label for="cnfpassword">Confirm Password: </label>
+            <div class="div">
                 <input type="password" name="cnfpassword" id="cnfpassword" required>
+                <label for="cnfpassword">Confirm Password: </label>
             </div>
-            <div>
+            <div class="div">
                 <input type="submit" value="Register">
             </div>
         </form>
@@ -61,17 +121,17 @@
     <div class="form2">
 
         <form action="/login" method="post">
-            <div>
+            <div class="div">
+                <input type="text" name="email" id="emaill" required>
                 <label for="emaill"> Email: </label>
-                <input type="email" name="email" id="emaill" required>
             </div>
 
-            <div>
-                <label for="passwordl"> Password: </label>
+            <div class="div">
                 <input type="password" name="password" id="passwordl" required>
+                <label for="passwordl"> Password: </label>
             </div>
 
-            <div>
+            <div class="div">
                 <input type="submit" value="Login">
             </div>
         </form>
@@ -79,4 +139,5 @@
     </div>
 
 </body>
+
 </html>
