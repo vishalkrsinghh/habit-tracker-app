@@ -1,7 +1,50 @@
+<link rel="stylesheet" href="/css/home.css">
+<script src="/js/home.js" defer></script>
+<%- include('_navBarPartials')%>
+    <main>
+        <div class="dv">
+            <strong>Welcome to Home Page</strong>
 
- <%- include('_navBarPartials')%>
-<main>
-    <div class="dv">
-        <strong>Welcome to Home Page</strong>
-    </div>
- </main>
+            <div id="currentDateInfo">
+
+            </div>
+
+            <div id="container">
+
+            </div>
+
+            <div id="addHabit">
+                <span class="add"><i class="fa-solid fa-plus fa-sm">  </i> Add habit</span>
+                <ul class="habits">
+
+                    <!-- data will come from backend using ejs show here-->
+                    <li>habit1</li>
+                    <li>habit2</li>
+                    <li>habit3</li>
+                    <li>habit4</li>
+                    <li>habit5</li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="addingHabit">
+            <div class="close"> <strong>X</strong> </div> 
+            <form method="post" id="habitsaveform">
+
+                <div class="div">
+                    <input type="text" name="habitTitle" id="name" required>
+                    <label for="name"> Title: </label>
+                </div>
+                <div class="div">
+                    <input type="text" name="habitDescription" id="email">
+                    <label for="email"> Description: </label>
+                </div>
+                <div class="div">
+                    <input type="submit" value="Save">
+                </div>
+            </form>
+
+        </div>
+
+    </main>

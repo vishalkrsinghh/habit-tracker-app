@@ -5,6 +5,7 @@ module.exports.auth= async (req,res,next)=>{
 
     try {
         let tokenFromClient= req.cookies.jwtToken;
+        // console.log("client token", tokenFromClient);
         if(tokenFromClient){
             let decodedDataOfToken=await jwt.verify(tokenFromClient,process.env.JWT_SECRET_KEY);
             // console.log(decodedDataOfToken);

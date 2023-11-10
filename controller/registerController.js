@@ -29,7 +29,7 @@ module.exports.home = (req, res) => {
 }
 
 module.exports.logout=(req,res)=>{
-    //  res.cookie("jwtToken","");
+    res.cookie("jwtToken","");
     return res.redirect("/");
 
 }

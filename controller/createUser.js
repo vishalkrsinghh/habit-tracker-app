@@ -7,10 +7,10 @@ module.exports.create = async (req, res) => {
 
     try {
         let { name, email, password, cnfpassword } = req.body;
-        name=name.toLowerCase();
-        email=email.toLowerCase();
-        password=password.toLowerCase();
-        cnfpassword=cnfpassword.toLowerCase();
+        name = name.toLowerCase();
+        email = email.toLowerCase();
+        password = password.toLowerCase();
+        cnfpassword = cnfpassword.toLowerCase();
 
         if (name && email && password && cnfpassword) {
 
@@ -61,11 +61,11 @@ module.exports.create = async (req, res) => {
 }
 
 module.exports.login = async (req, res) => {
-    
+    // console.log("refresh");
     try {
         let { email, password } = req.body;
-        email=email.toLowerCase();
-        password=password.toLowerCase();
+        email = email.toLowerCase();
+        password = password.toLowerCase();
 
         if (email && password) {
 
@@ -78,22 +78,29 @@ module.exports.login = async (req, res) => {
                 if (isPasswordEqual) {
 
                     // genetate token and store in cookie.
+
+                    // after all refresh ek naya token generate ho raha hai.
                     let token = jwt.sign(
                         { email: user.email, _id: user._id },
                         process.env.JWT_SECRET_KEY,
-                        {expiresIn:"20m"}
+                        { expiresIn: "20m" }
                     )
+                    // console.log("token set from backend",token);
                     res.cookie('jwtToken', token, { maxAge: 20 * 60 * 1000, httpOnly: true });  // 1000 means 1 sec, this cookie expires in 20 minutes as token expires in 20 minutes.
-                    
+
                     // instead of send Json send home page.
                     // res.status(201).json({
                     //     message: "Login SuccessFully",
                     //     data: { token } 
                     // })
+
+                    let date = new Date();
+
+                    let todayDate = date.getDate();
+                    let currentMonth = date.getMonth()+1;
+                    let currentYear = date.getFullYear();
                     // res.redirect("/home");
-                    res.render("home",{
-                        title:"Home"
-                    });
+                    res.redirect(`/date/${todayDate}/?year=${currentYear}&&month=${currentMonth}`);
 
                 } else {
                     res.status(400).json({
