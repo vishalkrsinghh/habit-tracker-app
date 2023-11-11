@@ -16,7 +16,7 @@ let userSchema= new mongoose.Schema({
         require:true
     },
 
-    habit:[{
+    habits:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"habitCollection"
     }]

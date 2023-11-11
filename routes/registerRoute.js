@@ -14,6 +14,8 @@ router.get("/logout", require("../controller/registerController").logout)
 
 router.get("/home",authentication.auth,require("../controller/registerController").home );
 
+router.post("/date/:date",authentication.auth, require("../controller/savehabitController").saveHabit);
+
 router.use("/date",authentication.auth,require("./getDate") );
 
 module.exports= router;

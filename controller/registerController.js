@@ -13,7 +13,17 @@ module.exports.register = async (req, res) => {
         let isUser = await userCollection.findOne({ _id: decodedDataOfToken._id });
 
         if (isUser) {
-            res.redirect("/home");
+            // res.redirect("/home");
+            // jygh:kljn,jlp;-][p]765764thrd65e
+            let date = new Date();
+
+            let todayDate = date.getDate();
+            let currentMonth = date.getMonth()+1;
+            let currentYear = date.getFullYear();
+            // res.redirect("/home");
+            res.redirect(`/date/${todayDate}/?year=${currentYear}&&month=${currentMonth}`);
+        }else{
+            return res.render("register");
         }
     }
     catch (err) {

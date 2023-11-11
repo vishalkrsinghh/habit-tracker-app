@@ -9,19 +9,20 @@ let habitSchema= new mongoose.Schema({
     },
 
     habitDescription:{
-        type:String
+        type:String,
+        require:true
     },
 
     startingDate:{
-        type:String,
+        type:Number,
         require:true
     },
     startingMonth:{
-        type:String,
+        type:Number,
         require:true
     },
     startingYear:{
-        type:String,
+        type:Number,
         require:true
     },
 

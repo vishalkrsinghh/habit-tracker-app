@@ -9,15 +9,15 @@ let compStatus= new mongoose.Schema({
     // },
 
     compDate:{
-        type:String,
+        type:Number,
         require:true
     },
     compMonth:{
-        type:String,
+        type:Number,
         require:true
     },
     compYear:{
-        type:String,
+        type:Number,
         require:true
     },
     complStatus:{

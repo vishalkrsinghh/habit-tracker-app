@@ -83,10 +83,10 @@ module.exports.login = async (req, res) => {
                     let token = jwt.sign(
                         { email: user.email, _id: user._id },
                         process.env.JWT_SECRET_KEY,
-                        { expiresIn: "20m" }
+                        { expiresIn: "60m" }
                     )
                     // console.log("token set from backend",token);
-                    res.cookie('jwtToken', token, { maxAge: 20 * 60 * 1000, httpOnly: true });  // 1000 means 1 sec, this cookie expires in 20 minutes as token expires in 20 minutes.
+                    res.cookie('jwtToken', token, { maxAge: 60 * 60 * 1000, httpOnly: true });  // 1000 means 1 sec, this cookie expires in 20 minutes as token expires in 20 minutes.
 
                     // instead of send Json send home page.
                     // res.status(201).json({
@@ -124,6 +124,7 @@ module.exports.login = async (req, res) => {
             })
         }
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             Error: "Error in login, Error in Code, Server Side Error .",
             data: { error }

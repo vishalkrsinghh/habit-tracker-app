@@ -17,7 +17,6 @@ let currentMonth=date.getMonth();  // give current month from 0
 let currentYear= date.getFullYear();
 let months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-habitsaveform.setAttribute("action",`/savehabit/${todayDate}/?year=${currentYear}&&month=${currentMonth+1}`)
 // currentDateInfo.innerHTML=`<h3> ${todayDate}-${months[currentMonth]}-${currentYear} </h3>`
 currentDateInfo.innerHTML=`<h3> Today </h3>`
 for(let i=1;i<=noOfDays; i++){
@@ -39,7 +38,7 @@ for(let i=0; i<a.length; i++){
         let year= Number(arr[3].slice(6,10));
         let month= Number(arr[3].slice(18)); // give  month from 1
 
-        habitsaveform.setAttribute("action",`/savehabit/${date}/?year=${year}&&month=${month}`)
+        habitsaveform.setAttribute("action",`/date/${date}/?year=${year}&&month=${month}`)  // if preventdefault on then on this. if prevent default off then off this.
         if(todayDate!=date || currentMonth!=month || currentYear!=year){
             currentDateInfo.innerHTML=`<h3> ${date}-${months[month-1]}-${year} </h3>`
         }
