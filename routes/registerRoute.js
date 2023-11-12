@@ -18,4 +18,6 @@ router.post("/date/:date",authentication.auth, require("../controller/savehabitC
 
 router.use("/date",authentication.auth,require("./getDate") );
 
+router.get("/complitionstatus/:id/:id2",authentication.auth,require("../controller/compstatus").completeStatus);
+
 module.exports= router;
