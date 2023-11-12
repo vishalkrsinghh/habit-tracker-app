@@ -1,5 +1,7 @@
 
+let jwt = require("jsonwebtoken");
 let habitCollectionModel = require("../model/habitModel");
+let userCollection= require("../model/userModel");
 
 module.exports.date = async (req, res) => {
 
@@ -14,22 +16,42 @@ module.exports.date = async (req, res) => {
         year = Number(year);
         month = Number(month);
 
-        // yaha p data fetch kar k home page p dikhana hai wo likhna hai jo lits hogi habit ki us din ki usko ul m print karwana hai render home k sath ek objecgt bhi bejh jisme data hoga.
+        let tokenFromClient = req.cookies.jwtToken;
+        if (tokenFromClient) {
+            let decodedDataOfToken = await jwt.verify(tokenFromClient, process.env.JWT_SECRET_KEY);
+            // console.log(decodedDataOfToken);
+            let isUser = await userCollection.findOne({ _id: decodedDataOfToken._id });
 
-        let data=await habitCollectionModel.find({
-            $and: [{ startingDate: { $gte: 1, $lte: paramDate } }, { startingMonth: currentMonth }, { startingYear: currentYear }]
-        })
+            if (isUser) {
+                let data = await habitCollectionModel.find({
+                    $and: [{ startingDate: { $gte: 1, $lte: paramDate } }, { startingMonth: currentMonth }, { startingYear: currentYear }, { user: decodedDataOfToken._id }]
+                })
 
-        console.log(data);
+                // console.log(data);
 
-        //  data m fetch karna hai is date p (is din ka date ke or is din se chote date ke sabhi habit ko show karna hai)
-        // habit m query lagani hai find many wali.
+                // res.redirect("/home");
+                // res.redirect(`/date/${paramss.id}/?year=${queries.year}&&month=${queries.month}`);
+                return res.render("home", {
+                    data,
+                    paramDate,
+                    year,
+                    month
+                })
+            } else {
+                res.redirect("/");
+                // res.status(400).json({
+                //     message:"invalid Token/ Unauthorised"
+                // }) 
+            }
 
-        // res.redirect("/home");
-        // res.redirect(`/date/${paramss.id}/?year=${queries.year}&&month=${queries.month}`);
-        return res.render("home",{
-            data
-        })
+        }
+        else {
+            res.redirect("/");
+            // res.status(400).json({
+            //     message:"Token not found/ Unauthorised "
+            // })
+        }
+
     } catch (error) {
         console.log(error);
         res.status(500).json({

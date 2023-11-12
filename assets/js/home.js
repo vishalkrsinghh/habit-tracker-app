@@ -31,14 +31,14 @@ let a=document.getElementsByTagName("a")
 
 for(let i=0; i<a.length; i++){
     a[i].onclick=(e)=>{
-        e.preventDefault();
+        // e.preventDefault(); // jabtak xmlhttp req nahi karta tab tak isko off rahne de.
         let href=a[i].getAttribute("href");
         let arr =href.split("/");
         let date= Number(arr[2]);
         let year= Number(arr[3].slice(6,10));
         let month= Number(arr[3].slice(18)); // give  month from 1
 
-        habitsaveform.setAttribute("action",`/date/${date}/?year=${year}&&month=${month}`)  // if preventdefault on then on this. if prevent default off then off this.
+        // habitsaveform.setAttribute("action",`/date/${date}/?year=${year}&&month=${month}`)  // if preventdefault on then on this. if prevent default off then off this.
         if(todayDate!=date || currentMonth!=month || currentYear!=year){
             currentDateInfo.innerHTML=`<h3> ${date}-${months[month-1]}-${year} </h3>`
         }

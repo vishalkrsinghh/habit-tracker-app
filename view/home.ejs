@@ -16,13 +16,17 @@
             <div id="addHabit">
                 <span class="add"><i class="fa-solid fa-plus fa-sm">  </i> Add habit</span>
                 <ul class="habits">
-
                     <!-- data will come from backend using ejs show here-->
-                    <li>habit1</li>
-                    <li>habit2</li>
-                    <li>habit3</li>
-                    <li>habit4</li>
-                    <li>habit5</li>
+                    <% for(let i=0; i<data.length; i++){ %>
+
+                        <li>  
+                            <span class="wrongRight"> X </span>
+                             title: <%=data[i].habitTitle %>, Description: <%=data[i].habitDescription%>, <%=data[i].startingDate%>  
+                             <a href="/complitionstatus/<%=data[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=true"> <button value="true"> Done </button> </a>
+                            <a href="/complitionstatus/<%=data[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=false"> <button value="false"> NotDone </button> </a>
+                        </li>
+
+                        <%}%>
                 </ul>
 
             </div>
