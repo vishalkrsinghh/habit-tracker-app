@@ -1,7 +1,8 @@
 
 let jwt = require("jsonwebtoken");
 let habitCollectionModel = require("../model/habitModel");
-let userCollection= require("../model/userModel");
+let userCollection = require("../model/userModel");
+let completionModel = require("../model/completionModel");
 
 module.exports.date = async (req, res) => {
 
@@ -10,46 +11,63 @@ module.exports.date = async (req, res) => {
         let { id } = req.params;
 
         let date = new Date();
+        let todayDate = date.getDate();
         let currentMonth = date.getMonth() + 1;
         let currentYear = date.getFullYear();
         let paramDate = Number(id);
         year = Number(year);
         month = Number(month);
 
-        let tokenFromClient = req.cookies.jwtToken;
-        if (tokenFromClient) {
-            let decodedDataOfToken = await jwt.verify(tokenFromClient, process.env.JWT_SECRET_KEY);
-            // console.log(decodedDataOfToken);
-            let isUser = await userCollection.findOne({ _id: decodedDataOfToken._id });
+        if (paramDate > todayDate || month > currentMonth || year > currentYear || paramDate < 1 || month < currentMonth || year < currentYear) {
+            res.status(400).json({
+                message: "Please send current month's date and current year, and don't try to go in future."
+            })
+        } else {
+            let tokenFromClient = req.cookies.jwtToken;
+            if (tokenFromClient) {
+                let decodedDataOfToken = await jwt.verify(tokenFromClient, process.env.JWT_SECRET_KEY);
+                // console.log(decodedDataOfToken);
+                let isUser = await userCollection.findOne({ _id: decodedDataOfToken._id });
 
-            if (isUser) {
-                let data = await habitCollectionModel.find({
-                    $and: [{ startingDate: { $gte: 1, $lte: paramDate } }, { startingMonth: currentMonth }, { startingYear: currentYear }, { user: decodedDataOfToken._id }]
-                })
+                if (isUser) {
+                    let data = await habitCollectionModel.find({
+                        $and: [{ startingDate: { $gte: 1, $lte: paramDate } }, { startingMonth: currentMonth }, { startingYear: currentYear }, { user: decodedDataOfToken._id }]
+                    })
 
-                // console.log(data);
+                    let dateDetail=[];
+                    // console.log(data);
 
-                // res.redirect("/home");
-                // res.redirect(`/date/${paramss.id}/?year=${queries.year}&&month=${queries.month}`);
-                return res.render("home", {
-                    data,
-                    paramDate,
-                    year,
-                    month
-                })
-            } else {
+                    for(let i=0; i<data.length; i++){
+                    let onThatDateDetail= await completionModel.findOne({
+                        $and: [{habit:data[i]._id}, {compDate:paramDate},{compYear:year},{compMonth:month}]
+                    })
+                    dateDetail.push(onThatDateDetail);
+                    }
+
+                    // console.log(dateDetail);
+                    // res.redirect("/home");
+                    // res.redirect(`/date/${paramss.id}/?year=${queries.year}&&month=${queries.month}`);
+                    return res.render("home", {
+                        data,
+                        paramDate,
+                        year,
+                        month,
+                        dateDetail
+                    })
+                } else {
+                    res.redirect("/");
+                    // res.status(400).json({
+                    //     message:"invalid Token/ Unauthorised"
+                    // }) 
+                }
+
+            }
+            else {
                 res.redirect("/");
                 // res.status(400).json({
-                //     message:"invalid Token/ Unauthorised"
-                // }) 
+                //     message:"Token not found/ Unauthorised "
+                // })
             }
-
-        }
-        else {
-            res.redirect("/");
-            // res.status(400).json({
-            //     message:"Token not found/ Unauthorised "
-            // })
         }
 
     } catch (error) {

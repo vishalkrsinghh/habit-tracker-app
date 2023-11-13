@@ -22,8 +22,8 @@
                         <li>  
                             <span class="wrongRight"> X </span>
                              title: <%=data[i].habitTitle %>, Description: <%=data[i].habitDescription%>, <%=data[i].startingDate%>  
-                             <a href="/complitionstatus/<%=data[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=true"> <button value="true"> Done </button> </a>
-                            <a href="/complitionstatus/<%=data[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=false"> <button value="false"> NotDone </button> </a>
+                             <a href="/complitionstatus/<%=dateDetail[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=true"> <button value="true"> Done </button> </a>
+                            <a href="/complitionstatus/<%=dateDetail[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=false"> <button value="false"> NotDone </button> </a>
                         </li>
 
                         <%}%>

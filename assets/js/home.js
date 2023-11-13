@@ -21,7 +21,16 @@ let months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","D
 currentDateInfo.innerHTML=`<h3> Today </h3>`
 for(let i=1;i<=noOfDays; i++){
 
-    container.innerHTML+=` <a href="/date/${i}/?year=${date.getFullYear()}&&month=${date.getMonth()+1}"> <span class="span"> ${i} </span> </a> `
+    container.innerHTML+=`<button class="btn"> <a href="/date/${i}/?year=${date.getFullYear()}&&month=${date.getMonth()+1}"> <span class="span"> ${i} </span> </a> </button> `
+    
+    // let btn= document.getElementsByClassName("btn");
+    // if(i>todayDate){
+    //     console.log(i);
+    //     btn[i].setAttribute("disabled", "");
+    //     // for(let j=0; j<btn.length){
+
+    //     // }
+    // }
 }
 
 
