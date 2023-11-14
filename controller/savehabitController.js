@@ -46,7 +46,7 @@ module.exports.saveHabit = async (req, res) => {
                     isUser.habits.push(habit._id);
                     isUser.save();
                     
-                    if(date<todayDate){
+                    if(date<=todayDate){
 
                         for(let i=date; i<=todayDate; i++){
                             let completeStatus=await completionModel.create({

@@ -17,6 +17,11 @@
                 <span class="add"><i class="fa-solid fa-plus fa-sm"> </i> Add habit</span>
                 <ul class="habits">
                     <!-- data will come from backend using ejs show here-->
+
+                    <%if(data.length==0){%>
+                        <div class="nohabit"> <h3> No Habits To Show </h3> </div>
+                        <%}%>
+
                     <% for(let i=0; i<data.length; i++){ %>
 
                         <li class="li2">
