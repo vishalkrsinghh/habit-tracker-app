@@ -14,16 +14,31 @@
             </div>
 
             <div id="addHabit">
-                <span class="add"><i class="fa-solid fa-plus fa-sm">  </i> Add habit</span>
+                <span class="add"><i class="fa-solid fa-plus fa-sm"> </i> Add habit</span>
                 <ul class="habits">
                     <!-- data will come from backend using ejs show here-->
                     <% for(let i=0; i<data.length; i++){ %>
 
-                        <li>  
-                            <span class="wrongRight"> X </span>
-                             title: <%=data[i].habitTitle %>, Description: <%=data[i].habitDescription%>, <%=data[i].startingDate%>  
-                             <a href="/complitionstatus/<%=dateDetail[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=true"> <button value="true"> Done </button> </a>
-                            <a href="/complitionstatus/<%=dateDetail[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=false"> <button value="false"> NotDone </button> </a>
+                        <li class="li2">
+                            <span class="wrongRight">
+                                <%if(dateDetail[i].complStatus==true){%>
+                                    <a
+                                        href="/complitionstatus/<%=dateDetail[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=false">
+                                        <i class="fa-solid fa-circle-check"></i> </a>
+                                    <%}else if(dateDetail[i].complStatus==false){%>
+                                        <a
+                                            href="/complitionstatus/<%=dateDetail[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=null">
+                                            <i class="fa-sharp fa-solid fa-circle-xmark"></i> </a>
+                                        <%} else{%>
+                                            <a
+                                                href="/complitionstatus/<%=dateDetail[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=true">
+                                                <i class="fa-solid fa-circle"></i> </a>
+                                            <%}%>
+                            </span>
+                            title: <%=data[i].habitTitle %>, Description: <%=data[i].habitDescription%>,
+                                    <%=data[i].startingDate%>
+
+
                         </li>
 
                         <%}%>
@@ -33,7 +48,7 @@
         </div>
 
         <div class="addingHabit">
-            <div class="close"> <strong>X</strong> </div> 
+            <div class="close"> <strong>X</strong> </div>
             <form method="post" id="habitsaveform">
 
                 <div class="div">
