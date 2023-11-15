@@ -17,6 +17,7 @@ router.get("/home",authentication.auth,require("../controller/registerController
 router.post("/date/:date",authentication.auth, require("../controller/savehabitController").saveHabit);
 
 router.use("/date",authentication.auth,require("./getDate") );
+router.get("/allhabits",authentication.auth, require("../controller/showAllHabits").allHabits);
 
 router.get("/complitionstatus/:id/:id2",authentication.auth,require("../controller/compstatus").completeStatus);
 

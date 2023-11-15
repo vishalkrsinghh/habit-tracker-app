@@ -18,7 +18,7 @@ module.exports.date = async (req, res) => {
         year = Number(year);
         month = Number(month);
 
-        if (paramDate > todayDate || month > currentMonth || year > currentYear || paramDate < 1 || month < currentMonth || year < currentYear) {
+        if (paramDate > todayDate || month > currentMonth || year > currentYear || paramDate < 1 || month < currentMonth || year < currentYear || isNaN(month) || isNaN(paramDate) || isNaN(year)) {
             res.status(400).json({
                 message: "Please send current month's date and current year, and don't try to go in future."
             })

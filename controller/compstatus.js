@@ -1,5 +1,5 @@
 
-let habitCollectionModel = require("../model/habitModel");
+// let habitCollectionModel = require("../model/habitModel");
 let completionModel = require("../model/completionModel");
 
 module.exports.completeStatus = async (req, res) => {
@@ -12,13 +12,8 @@ module.exports.completeStatus = async (req, res) => {
         year = Number(year);
         value = JSON.parse(`${value}`.toLowerCase());
 
-
-        // update the status in completionmodel.
-        // use findbyid and update method.
         let check = await completionModel.findByIdAndUpdate(id, { complStatus: value });
         console.log("check", check);
-
-        // completionmodel m find kar completionmodel id se uske baad status ko update kar de USKE baad habitmodel.save() kar de
 
         // console.log(id,typeof id, month, year,typeof value, value);
         res.redirect(`/date/${id2}/?year=${year}&&month=${month}`);

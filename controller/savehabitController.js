@@ -28,7 +28,7 @@ module.exports.saveHabit = async (req, res) => {
                 let currentMonth = date1.getMonth() + 1;
                 let currentYear = date1.getFullYear();
 
-                if (date > todayDate || month > currentMonth || year > currentYear || date < 1 || month < currentMonth || year < currentYear) {
+                if (date > todayDate || month > currentMonth || year > currentYear || date < 1 || month < currentMonth || year < currentYear || isNaN(month) || isNaN(date) || isNaN(year)) {
                     res.status(400).json({
                         message: "Please send current month's date and current year, and don't try to go in future."
                     })
@@ -90,8 +90,8 @@ module.exports.saveHabit = async (req, res) => {
                     // return res.redirect("/home")
 
                     // res.redirect("/home");
-                    res.redirect(`/date/${todayDate}/?year=${currentYear}&&month=${currentMonth}`);
-                    // you can also send to the date on which user created habit try to Do AFTER COMPLETING ALL THE WORK.
+                    // res.redirect(`/date/${todayDate}/?year=${currentYear}&&month=${currentMonth}`); // when user creates new habit then send it to current date/day.
+                    res.redirect(`/date/${date}/?year=${year}&&month=${month}`);  // when user creates new habit then send it to that date/day for wich user creates the habit..
                 }
             } else {
                 return res.redirect("/");
