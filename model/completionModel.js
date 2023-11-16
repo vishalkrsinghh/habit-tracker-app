@@ -8,16 +8,21 @@ let compStatus= new mongoose.Schema({
     //     default: Date.now
     // },
 
-    compDate:{
-        type:Number,
-        require:true
-    },
-    compMonth:{
-        type:Number,
-        require:true
-    },
-    compYear:{
-        type:Number,
+    // compDate:{
+    //     type:Number,
+    //     require:true
+    // },
+    // compMonth:{
+    //     type:Number,
+    //     require:true
+    // },
+    // compYear:{
+    //     type:Number,
+    //     require:true
+    // },
+
+    allDate:{
+        type: Date,
         require:true
     },
     complStatus:{

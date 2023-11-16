@@ -49,10 +49,18 @@ module.exports.saveHabit = async (req, res) => {
                     if(date<=todayDate){
 
                         for(let i=date; i<=todayDate; i++){
+                            // change a littlebit here below in compdate,compyear and compmonth
+                            if(currentMonth<10){
+                                currentMonth="0"+currentMonth;
+                            }
+                            if(i<10){
+                                i="0"+i;
+                            }
                             let completeStatus=await completionModel.create({
-                                compDate:i,
-                                compMonth:currentMonth,
-                                compYear:currentYear,
+                                // compDate:i,
+                                // compMonth:currentMonth,
+                                // compYear:currentYear,
+                                allDate:`${currentYear}-${currentMonth}-${i}`,
                                 habit:habit._id
                             })
                             habit.completionStatus.push(completeStatus._id);
@@ -61,16 +69,24 @@ module.exports.saveHabit = async (req, res) => {
                     }
 
 
-                    // let task = cron.schedule('0 1 * * *', async () => {
-                    let task = cron.schedule('1 0 * * *', async () => {
-                    // let task = cron.schedule('*/3 * * * *', async () => { // for testing purpose
+                    // let task = cron.schedule('0 1 * * *', async () => { //raat k 1 baj k 0 mint
+                    let task = cron.schedule('1 0 * * *', async () => {  // raat k 12 baj k 1 mint
+                    // let task = cron.schedule('*/3 * * * *', async () => { // for testing purpose every 3 minutes.
                         console.log('Running a job at 01:00 in night at Asia/Kolkata');
                         let isHabit = await habitCollectionModel.findOne({ _id: habit._id });
                         if (isHabit) {
+                            // change a littlebit here below in compdate,compyear and compmonth
+                            if(currentMonth<10){
+                                currentMonth="0"+currentMonth;
+                            }
+                            if(todayDate<10){
+                                todayDate="0"+todayDate;
+                            }
                             let completeStatus=await completionModel.create({
-                                compDate:todayDate,
-                                compMonth:currentMonth,
-                                compYear:currentYear,
+                                // compDate:todayDate,
+                                // compMonth:currentMonth,
+                                // compYear:currentYear,
+                                allDate:`${currentYear}-${currentMonth}-${todayDate}`,
                                 habit:isHabit._id
                             })
 

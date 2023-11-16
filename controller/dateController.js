@@ -36,10 +36,19 @@ module.exports.date = async (req, res) => {
 
                     let dateDetail=[];
                     // console.log(data);
-
+                    if(month<10){
+                        month="0"+month;
+                    }
+                    if(paramDate<10){
+                        paramDate="0"+paramDate;
+                    }
                     for(let i=0; i<data.length; i++){
                     let onThatDateDetail= await completionModel.findOne({
-                        $and: [{habit:data[i]._id}, {compDate:paramDate},{compYear:year},{compMonth:month}]
+                        // change a littlebit here below in compdate,compyear and compmonth
+                        $and: [{habit:data[i]._id}, 
+                        {allDate:`${year}-${month}-${paramDate}`}
+                        // {compDate:paramDate},{compYear:year},{compMonth:month}
+                    ]
                     })
                     dateDetail.push(onThatDateDetail);
                     }
