@@ -1,16 +1,16 @@
+<link rel="stylesheet" href="/css/habitPage.css">
 <%- include('_navBarPartials')%>
     <h2> All Habits will Show Here. </h2>
 
     <div>
 
-        <ul>
+        <ul class="ul1">
 
             <%for(let i=0; i<allHabits.length; i++){%>
                 <li>
-                    <%=allHabits[i].habitTitle%> <small>
-                            <%=allHabits[i].habitDescription%>
-                        </small>
-                        <div>
+                    <h4><%=allHabits[i].habitTitle%> </h4>
+                    <small><%=allHabits[i].habitDescription%></small>
+                        <div class="flex">
                             <%let abc;%>
                             <%for(let j=new Date(`${yearD}-${monthD}-${startD}`),k=0; j<=new
                                 Date(`${currentYear}-${currentMonth}-${todayDate}`);j.setDate(j.getDate() + 1)){%>
@@ -22,16 +22,16 @@
                           
                                     <%if(abc.allDate.getDate()==j.getDate()){%>
                                         <%if(abc.complStatus==true){%>
-                                            <button style="background-color: green;">  <strong> <%=j.getDate()%> </strong>  </button>
+                                            <button class="green" title="Done"> <div><%=days[j.getDay()]%> </div>  <strong> <%=j.getDate()%> </strong>  </button>
                                             <%}else if(abc.complStatus==false){%>
 
-                                                <button style="background-color: red;"> <strong> <%=j.getDate()%> </strong>  </button>
+                                                <button class="red" title="Incomplete"> <div><%=days[j.getDay()]%> </div> <strong> <%=j.getDate()%> </strong>  </button>
                                         <%}else{%>
-                                            <button style="background-color: yellow;">  <strong> <%=j.getDate()%> </strong>  </button>
+                                            <button class="yellow" title="Not Done"> <div><%=days[j.getDay()]%> </div> <strong> <%=j.getDate()%> </strong>  </button>
                                             <%}%>
                                         <% k++;%>
                                     <%}else{%>
-                                        <button disabled>  <%=j.getDate()%>  </button>
+                                        <button disabled> <div><%=days[j.getDay()]%> </div>  <%=j.getDate()%>  </button>
                                       <%}%>
                                 
                             <%}%>

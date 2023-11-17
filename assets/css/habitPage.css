@@ -1,0 +1,30 @@
+button {
+    border: 1px solid black;
+    min-width: 40px;
+    border-radius: 10px;
+    padding: 2px 5px;
+    margin: 2px 4px;
+}
+.flex {
+    display: flex;
+    overflow: auto;
+}
+.ul1 {
+    padding: 2px 4px;
+    list-style-type: none;
+    max-height: 62vh;
+    margin: 4px 6px;
+    overflow: auto;
+}
+.green{
+    border: 2px solid rgb(0, 255, 0);
+    background-color: rgb(89, 250, 89);
+}
+.red{
+    border: 2px solid rgb(255, 0, 0);
+    background-color: rgb(255, 87, 87);
+}
+.yellow{
+    border: 2px solid rgb(255, 255, 3);
+    background-color: #fde060;
+}

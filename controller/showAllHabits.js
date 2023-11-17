@@ -18,6 +18,7 @@ module.exports.allHabits = async (req, res) => {
             let isUser = await userCollection.findOne({ _id: decodedDataOfToken._id });
 
             if (isUser) {
+                let days=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
                 let allHabits = await habitCollectionModel.find({ user:isUser._id});
                 // console.log(allHabits.length, allHabits);
                 let sevenDay=[]
@@ -45,7 +46,8 @@ module.exports.allHabits = async (req, res) => {
                     sevenDay,
                     todayDate,
                     currentMonth,
-                    currentYear
+                    currentYear,
+                    days
                 });
             }
             else {
