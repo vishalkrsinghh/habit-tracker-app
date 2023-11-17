@@ -11,15 +11,31 @@
                             <%=allHabits[i].habitDescription%>
                         </small>
                         <div>
-                            <% let k=0; %>
-                            <%for(let j=new Date(`${yearD}-${monthD}-${startD}`); j<=new
-                                Date(`${currentYear}-${currentMonth}-${todayDate}`);j.setDate(j.getDate() + 1),k++){%>
+                            <%let abc;%>
+                            <%for(let j=new Date(`${yearD}-${monthD}-${startD}`),k=0; j<=new
+                                Date(`${currentYear}-${currentMonth}-${todayDate}`);j.setDate(j.getDate() + 1)){%>
 
-                                <button>
-                                    <%=j.getDate()%>
-                                </button>
-                                <%=sevenDay[i][k]%>
+
+                                    <%if(k<sevenDay[i].length){%>
+                                        <% abc=sevenDay[i][k]%>
+                                    <%}%>
+                          
+                                    <%if(abc.allDate.getDate()==j.getDate()){%>
+                                        <%if(abc.complStatus==true){%>
+                                            <button style="background-color: green;">  <strong> <%=j.getDate()%> </strong>  </button>
+                                            <%}else if(abc.complStatus==false){%>
+
+                                                <button style="background-color: red;"> <strong> <%=j.getDate()%> </strong>  </button>
+                                        <%}else{%>
+                                            <button style="background-color: yellow;">  <strong> <%=j.getDate()%> </strong>  </button>
+                                            <%}%>
+                                        <% k++;%>
+                                    <%}else{%>
+                                        <button disabled>  <%=j.getDate()%>  </button>
+                                      <%}%>
+                                
                             <%}%>
+
                         </div>
                 </li>
             <%}%>

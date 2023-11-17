@@ -35,7 +35,7 @@ module.exports.allHabits = async (req, res) => {
                     })
                     sevenDay.push(sevenDays);
                 }
-                console.log(sevenDay);
+                // console.log(sevenDay);
 
                 res.render("habitPage", {
                     allHabits,
