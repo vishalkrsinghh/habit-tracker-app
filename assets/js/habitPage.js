@@ -16,6 +16,8 @@ for(let i=0; i<pencil.length; i++){
         updateDescription.value=desc;
         console.log(idToUpdate, " title== ", title, " desc= ", desc);
         updatingHabit.style.display="flex";
+        updatingHabit.style.alignItems="center";
+        updatingHabit.style.flexDirection="column";
         hide_unhide_onupdate.style.display="none";
     }
 }

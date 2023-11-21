@@ -63,3 +63,12 @@ h4,small {
 .label{
     padding: 9px;
 }
+._pencil {
+    border: none;
+    background: transparent;
+    color: blue;
+    cursor: pointer;
+}
+.fa-trash-can {
+    color: red;
+}

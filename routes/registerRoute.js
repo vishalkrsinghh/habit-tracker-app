@@ -19,6 +19,9 @@ router.post("/date/:date",authentication.auth, require("../controller/savehabitC
 router.use("/date",authentication.auth,require("./getDate") );
 router.get("/allhabits",authentication.auth, require("../controller/showAllHabits").allHabits);
 
+router.post("/update_habit/:idToUpdate",authentication.auth, require("../controller/updateHabit").updateHabit);
+router.get("/delete_habit/:idToDelete",authentication.auth,require("../controller/deleteHabit").deleteHabit);
+
 router.get("/complitionstatus/:id/:id2",authentication.auth,require("../controller/compstatus").completeStatus);
 
 module.exports= router;

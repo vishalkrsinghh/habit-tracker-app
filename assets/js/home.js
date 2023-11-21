@@ -67,6 +67,8 @@ if (todayDate != d || currentMonth + 1 != m || currentYear != y) {
 let show = () => {
     dv.style.display = "none";
     addingHabit.style.display = "flex";
+    addingHabit.style.alignItems="center";
+    addingHabit.style.flexDirection="column";
 }
 let hide = () => {
     dv.style.display = "block";
