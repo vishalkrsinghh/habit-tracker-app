@@ -1,4 +1,4 @@
-button {
+.button {
     border: 1px solid black;
     min-width: 40px;
     border-radius: 10px;
@@ -8,13 +8,15 @@ button {
 .flex {
     display: flex;
     overflow: auto;
+    /* remove scroll bar  */
 }
 .ul1 {
     padding: 2px 4px;
     list-style-type: none;
     max-height: 62vh;
-    margin: 4px 6px;
+    margin: 4px 4px;
     overflow: auto;
+    /* remove scroll bar  */
 }
 .green{
     border: 2px solid rgb(0, 255, 0);
@@ -27,4 +29,37 @@ button {
 .yellow{
     border: 2px solid rgb(255, 255, 3);
     background-color: #fde060;
+}
+._grid {
+    display: grid;
+    grid-template-columns: 80% 10% 10%;
+    align-items: center;
+    justify-items: start;
+}
+small {
+    font-size: x-small;
+}
+.li_1 {
+    margin: 12px 0px;
+    padding: 8px 3px;
+    border: 1px solid black;
+}
+.li_1:nth-child(2n){
+    background-color: rgb(192, 188, 188);
+}
+h4,small {
+    display: block;
+    width: 85%;
+    overflow: auto;
+    /* remove scroll bar  */
+}
+#updatingHabit{
+    display: none;
+}
+.close{
+    color: red;
+    cursor: pointer;
+}
+.label{
+    padding: 9px;
 }
