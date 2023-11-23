@@ -19,7 +19,7 @@
 }
 
 #addHabit {
-    height: 53vh;
+    height: 65vh;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -73,7 +73,7 @@
 .fa-circle {
     border: 0.2px solid black;
     border-radius: 50%;
-    left: 7%;
+    left: 5%;
     position: absolute;
     top: 7%;
     color: #ffdf56;
@@ -88,7 +88,56 @@
     overflow: auto;
     /* scrollbar ki display none de  */
 }
+h3 {
+    text-align: center;
+    margin-top: 15px;
+}
+table {
+    /* width: 99vw; */
+    width: 100%;
+    border: 1px solid;
+}
+tr {
+    display: grid;
+    grid-template-columns: 20% 25% 35% 20%;
+}
+td {
+    overflow: auto;
+    padding: 5px 3px;
+    text-align: center;
+}
+table,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th,td{
+    border-top: none;
+    border-left: none;
+}
+th:last-child,td:last-child{
+    border-right: none;
+}
+tbody tr:last-child td{
+    border-bottom: none;
+}
+thead {
+    position: sticky;
+    background: aquamarine;
+    top: -1px;
+    z-index: 10;
+}
 .btn {
     border-radius: 36%;
     border: 1px solid black;
+}
+
+@media only screen and (max-width:281px) {
+    table{
+        width: 125vw;
+    }
+}
+@media only screen and (min-width:540px) {
+    main {
+        margin: 10px 110px;
+    }
 }

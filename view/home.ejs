@@ -19,12 +19,23 @@
                     <!-- data will come from backend using ejs show here-->
 
                     <%if(data.length==0){%>
-                        <div class="nohabit"> <h3> No Habits To Show </h3> </div>
-                        <%}%>
-
+                        <div class="nohabit"> <h3> No Habits To Show, Create Habit On Clicking + Button. </h3> </div>
+                        <%}else{%>
+                            <table>
+                                <thead>
+                                    
+                                        <tr>
+                                            <th>Status</th>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Starting date</th>
+                                        </tr>
+                                    
+                                </thead>
+                            
                     <% for(let i=0; i<data.length; i++){ %>
-
-                        <li class="li2">
+                        <tr>
+                            <td>
                             <span class="wrongRight">
                                 <%if(dateDetail[i].complStatus==true){%>
                                     <a
@@ -40,12 +51,15 @@
                                                 <i class="fa-solid fa-circle"></i> </a>
                                             <%}%>
                             </span>
-                            title: <%=data[i].habitTitle %>, Description: <%=data[i].habitDescription%>,
-                                    <%=data[i].startingDate%>
+                        </td>
+                        <td><%=data[i].habitTitle %></td>
+                        <td><%=data[i].habitDescription%></td>
+                        <td> <%=data[i].startingDate%></td>
+                            
+                    </tr>
 
-
-                        </li>
-
+                        <%}%>
+                    </table>
                         <%}%>
                 </ul>
 
