@@ -1,4 +1,5 @@
 let pencil= document.getElementsByClassName("_pencil");
+let calendar= document.getElementsByClassName("calendar");
 let updatingHabit= document.getElementById("updatingHabit");
 let hide_unhide_onupdate= document.getElementById("hide_unhide_onupdate");
 let close= document.getElementsByClassName("close")[0];
@@ -19,6 +20,12 @@ for(let i=0; i<pencil.length; i++){
         updatingHabit.style.alignItems="center";
         updatingHabit.style.flexDirection="column";
         hide_unhide_onupdate.style.display="none";
+    }
+}
+for(let i=0; i<calendar.length; i++){
+    calendar[i].onclick= ()=>{
+        let {id}=calendar[i].dataset;
+        localStorage.setItem("id", id);
     }
 }
 

@@ -79,15 +79,6 @@
     color: #ffdf56;
 }
 
-.li2 {
-    display: grid;
-    grid-template-columns: 10vw 84vw;
-    align-items: center;
-    justify-content: start;
-    margin: 8px 1px;
-    overflow: auto;
-    /* scrollbar ki display none de  */
-}
 h3 {
     text-align: center;
     margin-top: 15px;

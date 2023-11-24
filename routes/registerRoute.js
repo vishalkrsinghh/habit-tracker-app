@@ -21,6 +21,8 @@ router.get("/allhabits",authentication.auth, require("../controller/showAllHabit
 
 router.post("/update_habit/:idToUpdate",authentication.auth, require("../controller/updateHabit").updateHabit);
 router.get("/delete_habit/:idToDelete",authentication.auth,require("../controller/deleteHabit").deleteHabit);
+router.get("/calendar", authentication.auth, require("../controller/calendarController").getCalendarPage);
+router.get("/calendar/habit", authentication.auth, require("../controller/calendarController").getCalendar);
 
 router.get("/complitionstatus/:id/:id2",authentication.auth,require("../controller/compstatus").completeStatus);
 
