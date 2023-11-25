@@ -1,4 +1,5 @@
 let pencil= document.getElementsByClassName("_pencil");
+let _delete= document.getElementsByClassName("_delete");
 let calendar= document.getElementsByClassName("calendar");
 let updatingHabit= document.getElementById("updatingHabit");
 let hide_unhide_onupdate= document.getElementById("hide_unhide_onupdate");
@@ -20,6 +21,14 @@ for(let i=0; i<pencil.length; i++){
         updatingHabit.style.alignItems="center";
         updatingHabit.style.flexDirection="column";
         hide_unhide_onupdate.style.display="none";
+    }
+}
+for(let i=0; i<_delete.length; i++){
+    _delete[i].onclick= ()=>{
+        let id= localStorage.getItem("id");
+        if(id!=null){
+            localStorage.setItem("id","null");
+        }
     }
 }
 for(let i=0; i<calendar.length; i++){

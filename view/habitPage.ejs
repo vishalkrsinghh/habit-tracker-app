@@ -12,7 +12,7 @@
                     <div class="_grid">
                         <h4><%=allHabits[i].habitTitle%> </h4>
                         <button value="<%=allHabits[i]._id%>" class="_pencil" data-title="<%=allHabits[i].habitTitle%>" data-desc="<%=allHabits[i].habitDescription%>"><i class="fa-solid fa-pencil fa-xs" ></i></button>
-                        <a href="/delete_habit/<%=allHabits[i]._id%>"><i class="fa-regular fa-trash-can fa-xs"></i> </a>
+                        <a href="/delete_habit/<%=allHabits[i]._id%>" class="_delete"><i class="fa-regular fa-trash-can fa-xs"></i> </a>
                     </div>
                     <small><%=allHabits[i].habitDescription%></small>
                         <div class="flex">
