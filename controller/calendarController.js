@@ -8,7 +8,6 @@ module.exports.getCalendarPage = async (req, res) => {
         let tokenFromClient = req.cookies.jwtToken;
         if (tokenFromClient) {
             let decodedDataOfToken = await jwt.verify(tokenFromClient, process.env.JWT_SECRET_KEY);
-            // console.log(decodedDataOfToken);
             let isAnyHabit = await habitCollectionModel.findOne({ user: decodedDataOfToken._id });
 
             if (isAnyHabit) {

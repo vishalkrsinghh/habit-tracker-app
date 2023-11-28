@@ -31,7 +31,6 @@ module.exports.create = async (req, res) => {
                     const hashPassword = bcrypt.hashSync(password, salt);
                     let abc = await userCollection.create({ name, email, password: hashPassword });
 
-                    // jwt.sign({},{},expiresIn:)
                     res.status(201).json({
                         message: "Created SuccessFully",
                         data: { abc }
@@ -77,9 +76,6 @@ module.exports.login = async (req, res) => {
 
                 if (isPasswordEqual) {
 
-                    // genetate token and store in cookie.
-
-                    // after all refresh ek naya token generate ho raha hai.
                     let token = jwt.sign(
                         { email: user.email, _id: user._id },
                         process.env.JWT_SECRET_KEY,
@@ -87,12 +83,6 @@ module.exports.login = async (req, res) => {
                     )
                     // console.log("token set from backend",token);
                     res.cookie('jwtToken', token, { maxAge: 60 * 60 * 1000, httpOnly: true });  // 1000 means 1 sec, this cookie expires in 20 minutes as token expires in 20 minutes.
-
-                    // instead of send Json send home page.
-                    // res.status(201).json({
-                    //     message: "Login SuccessFully",
-                    //     data: { token } 
-                    // })
 
                     let date = new Date();
 

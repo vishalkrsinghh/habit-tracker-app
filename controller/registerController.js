@@ -9,12 +9,9 @@ module.exports.register = async (req, res) => {
            return res.render("register");
         }
         let decodedDataOfToken = await jwt.verify(jwtToken, process.env.JWT_SECRET_KEY);
-        // console.log("hjgb=>", decodedDataOfToken);
         let isUser = await userCollection.findOne({ _id: decodedDataOfToken._id });
 
         if (isUser) {
-            // res.redirect("/home");
-            // jygh:kljn,jlp;-][p]765764thrd65e
             let date = new Date();
 
             let todayDate = date.getDate();

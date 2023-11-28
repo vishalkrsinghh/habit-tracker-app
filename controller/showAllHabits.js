@@ -30,7 +30,6 @@ module.exports.allHabits = async (req, res) => {
                     let sevenDays= await completionModel.find({
 
                         $and: [{habit:allHabits[i]._id}, 
-                        // {allDate: { $gte: `${year}-${month}-${paramDate}`, $lte: `${year}-${month}-${paramDate}` }}
                         {allDate: { $gte: start, $lte: new Date() }}
                     ]
                     })
@@ -58,7 +57,7 @@ module.exports.allHabits = async (req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({
             message: "server side error/ Error in server side code"
         })

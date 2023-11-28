@@ -10,9 +10,9 @@ app.use(cookieParser())
 
 app.use(express.urlencoded())
 app.use(express.json());
-const ejsLayouts= require("express-ejs-layouts");  // we have to install by npm i express-ejs-layouts and require it here to use Ejs Layouts.
+const ejsLayouts= require("express-ejs-layouts");  
 
-app.use(ejsLayouts);    // for using layouts of ejs.
+app.use(ejsLayouts); 
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 app.use(express.static(path.join(__dirname,"assets")));
@@ -20,7 +20,6 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"view"));
 
 app.use("/", require("./routes/registerRoute"));
-
 
 app.listen(PORT,()=>{
     console.log("srvr rn");

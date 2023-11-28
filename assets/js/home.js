@@ -17,20 +17,22 @@ let todayDate = date.getDate();
 let currentMonth = date.getMonth();  // give current month from 0 
 let currentYear = date.getFullYear();
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+let days= ["Sun","Mon","Tue","Wed","Thr","Fri","Sat"];
+
+let firstDay= new Date(currentYear,currentMonth,1).getDay();
+console.log(firstDay);
+let su = 7 - firstDay;
+for (let i = 1; i <= noOfDays; i++,firstDay++) {
+
+        if (firstDay > 0) {
+            if (i-1 == su || firstDay==days.length) {
+                firstDay = 0;
+            }
+        }
+
+    container.innerHTML += `<button class="btn"> <a href="/date/${i}/?year=${date.getFullYear()}&&month=${date.getMonth() + 1}"><div>${days[firstDay]}</div> <span class="span"> ${i} </span> </a> </button> `
 
 
-for (let i = 1; i <= noOfDays; i++) {
-
-    container.innerHTML += `<button class="btn"> <a href="/date/${i}/?year=${date.getFullYear()}&&month=${date.getMonth() + 1}"> <span class="span"> ${i} </span> </a> </button> `
-
-    // let btn= document.getElementsByClassName("btn");
-    // if(i>todayDate){
-    //     console.log(i);
-    //     btn[i].setAttribute("disabled", "");
-    //     // for(let j=0; j<btn.length){
-
-    //     // }
-    // }
 }
 
 

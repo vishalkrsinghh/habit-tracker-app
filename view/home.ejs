@@ -3,8 +3,6 @@
 <%- include('_navBarPartials')%>
     <main>
         <div class="dv">
-            <strong>Welcome to Home Page</strong>
-
             <div id="currentDateInfo">
 
             </div>
@@ -16,21 +14,17 @@
             <div id="addHabit">
                 <span class="add"><i class="fa-solid fa-plus fa-sm"> </i> Add habit</span>
                 <ul class="habits">
-                    <!-- data will come from backend using ejs show here-->
-
                     <%if(data.length==0){%>
                         <div class="nohabit"> <h3> No Habits To Show, Create Habit On Clicking + Button. </h3> </div>
                         <%}else{%>
                             <table>
                                 <thead>
-                                    
                                         <tr>
                                             <th>Status</th>
                                             <th>Title</th>
                                             <th>Description</th>
                                             <th>Starting date</th>
                                         </tr>
-                                    
                                 </thead>
                             
                     <% for(let i=0; i<data.length; i++){ %>
@@ -54,10 +48,9 @@
                         </td>
                         <td><%=data[i].habitTitle %></td>
                         <td><%=data[i].habitDescription%></td>
-                        <td> <%=data[i].startingDate%></td>
+                        <td> <%=data[i].startingDate%>-<%=months[data[i].startingMonth-1]%>-<%=data[i].startingYear%></td>
                             
                     </tr>
-
                         <%}%>
                     </table>
                         <%}%>

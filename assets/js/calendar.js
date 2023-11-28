@@ -4,9 +4,11 @@ let detail = document.getElementById("detail");
 let data0 = document.getElementById("data0");
 let _id = localStorage.getItem("id");
 // console.log(typeof JSON.parse(_id));
+let days = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+let x = 0;
 
 if (_id != "null") {
-    detail.style.display = "none"; 
+    detail.style.display = "none";
     let xhrReq = new XMLHttpRequest();
     xhrReq.open("get", `/calendar/habit/?id=${_id}`, true);
     xhrReq.send();
@@ -14,17 +16,20 @@ if (_id != "null") {
 
         let data = xhrReq.responseText;
         data = JSON.parse(data);
-        console.log("calendarJS  ", " = ", data.data);
-        
+        console.log(data.data);
+        console.log( data.data[0].complStatus)
+
         if (data.data.length == 0) {
-            data0.style.display="block";
-            table.style.display="none";
-            data0.innerHTML=`<h3>${data.message}</h3>`
+            data0.style.display = "block";
+            table.style.display = "none";
+            data0.innerHTML = `<h3>${data.message}</h3>`
         }
         else {
-            data0.style.display="none";
-            table.style.display="table";
+            data0.style.display = "none";
+            table.style.display = "table";
             let startingMonth = new Date(data.data[0].allDate).getMonth() + 1;
+            // let startingMonth2 = new Date(data.data[0].allDate).getMonth() + 1;
+            let startingMonth2 = 9;
             let startingYear = new Date(data.data[0].allDate).getFullYear();
             let len = data.data.length;
             let endingMonth = new Date(data.data[len - 1].allDate).getMonth() + 1;
@@ -35,22 +40,40 @@ if (_id != "null") {
             let newTr = document.createElement("tr");
             let i = 1;
             let k = 0;
-            for (let j = new Date(`${startingYear}-${9}-1`); j <= new Date(`${endingYear}-${endingMonth}-${LastDateOfEndingMonth}`); j.setDate(j.getDate() + 1)) {
-
-                // table.innerHTML+=`<div> ${j.getDate()} </div>`
+            for (let j = new Date(`${startingYear}-${5}-1`),o=0; j <= new Date(`${endingYear}-${endingMonth}-${new Date().getDate()}`); j.setDate(j.getDate() + 1)) {
+                // for (let j = new Date(`${startingYear}-${9}-15`); j <= new Date(`${2023}-${11}-${28}`); j.setDate(j.getDate() + 1)) {
 
                 let mon = j.getMonth() + 1;
                 let yr = j.getFullYear();
                 let lastDateOfThisMonth = new Date(yr, mon, 0).getDate();
-                // console.log(i);
+                // console.log(mon, " ", " = ", startingMonth2);
                 if (i % 2 == 0) {
 
-                    // create a new tr and append into table.
                     let td = document.createElement("td");
-                    // td.innerHTML=`${j.getDate()}`
-                    td.innerText = `${j.getDate()}`
-                    newTr.appendChild(td);
-                    // newTr.innerHTML+=`<td>${j.getDate()}</td>`
+                    console.log(j.getDate()," "," = ",new Date( data.data[o].allDate.slice(0,10)).getDate())
+                    if(j.getDate()==new Date( data.data[o].allDate.slice(0,10)).getDate() && j.getMonth()==new Date( data.data[o].allDate.slice(0,10)).getMonth() && j.getFullYear()==new Date( data.data[o].allDate.slice(0,10)).getFullYear()){
+                        if(data.data[o].complStatus==true){
+                            td.innerHTML = 
+                            `<button class="green button"  title="Done"> <strong> ${j.getDate()} </strong>  </button>`
+                            newTr.appendChild(td);
+                        }else if(data.data[o].complStatus==false){
+
+                            td.innerHTML = 
+                            `<button class="red button"  title="Incomplete"> <strong> ${j.getDate()} </strong>  </button>`
+                            newTr.appendChild(td);
+                        }else{
+                            td.innerHTML = 
+                            `<button class="yellow button"  title="Not Done"> <strong> ${j.getDate()} </strong>  </button>`
+                            newTr.appendChild(td);
+                            }
+                         o++;
+                    }else{
+                         td.innerHTML = 
+                            `<button disabled class="button"> <strong> ${j.getDate()} </strong>  </button>`
+                            newTr.appendChild(td);
+                      }
+
+
                     table.appendChild(newTr);
                     k++;
                     if (k == 7) {
@@ -63,11 +86,47 @@ if (_id != "null") {
                     }
                 } else {
 
+                    if (x == 0) {
+                        let tr = document.createElement("tr");
+                        let dt = j.getDay();
+                        let su = 7 - dt;
+                        for (let ii = 0; ii < 7; ii++, dt++) {
+                            if (dt > 0) {
+                                if (ii == su) {
+                                    dt = 0;
+                                }
+                            }
+                            let th = document.createElement("th");
+                            th.innerText = `${days[dt]}`
+                            tr.appendChild(th);
+                        }
+                        table.appendChild(tr);
+                    }
+                    x++;
+                    // console.log(days[j.getDay()]);
                     let td = document.createElement("td");
-                    // td.innerHTML=`${j.getDate()}`
-                    td.innerText = `${j.getDate()}`
-                    tr.appendChild(td);
-                    // tr.innerHTML+=`<td>${j.getDate()}</td>`
+                    if(j.getDate()==new Date( data.data[o].allDate.slice(0,10)).getDate() && j.getMonth()==new Date( data.data[o].allDate.slice(0,10)).getMonth() && j.getFullYear()==new Date( data.data[o].allDate.slice(0,10)).getFullYear()){
+                        if(data.data[o].complStatus==true){
+                            td.innerHTML = 
+                            `<button class="green button"  title="Done"> <strong> ${j.getDate()} </strong>  </button>`
+                            tr.appendChild(td);
+                        }else if(data.data[o].complStatus==false){
+
+                            td.innerHTML = 
+                            `<button class="red button"  title="Incomplete"> <strong> ${j.getDate()} </strong>  </button>`
+                            tr.appendChild(td);
+                        }else{
+                            td.innerHTML = 
+                            `<button class="yellow button"  title="Not Done"  > <strong> ${j.getDate()} </strong>  </button>`
+                            tr.appendChild(td);
+                            }
+                         o++;
+                    }else{
+                         td.innerHTML = 
+                            `<button disabled class="button" > <strong> ${j.getDate()} </strong>  </button>`
+                            tr.appendChild(td);
+                      }
+
                     table.appendChild(tr);
                     k++;
                     if (k == 7) {
@@ -80,21 +139,32 @@ if (_id != "null") {
                     }
                     // console.log(i," "," : ", k)
                 }
-                // do the work print the dates in container div make container div as grid.
 
                 if (lastDateOfThisMonth == j.getDate()) {
                     i = 1;
                     k = 0;
                     tr = document.createElement("tr");
-                    // append horizontal line hr tag in the container.
                     table.innerHTML += `<br>`
-                    let tbody = document.getElementsByTagName("tbody");
-                    // console.log(tbody);
-                    for (let w = 0; w < tbody.length; w++) {
-                        tbody[w].insertAdjacentHTML("afterbegin", `<tr> <th>sun</th><th>mon</th><th>tue</th><th>wed</th><th>thr</th><th>fri</th><th>sat</th> </tr>`);
+                }
+                if (startingMonth2 != mon) {
+                    startingMonth2 = mon;
 
+                    if(x!=1){
+                        let tr = document.createElement("tr");
+                        let dt = j.getDay();
+                        let su = 7 - dt;
+                        for (let ii = 0; ii < 7; ii++, dt++) {
+                            if (dt > 0) {
+                                if (ii == su) {
+                                    dt = 0;
+                                }
+                            }
+                            let th = document.createElement("th");
+                            th.innerText = `${days[dt]}`
+                            tr.appendChild(th);
+                        }
+                        table.appendChild(tr);
                     }
-                    // console.log("hr");
                 }
             }
         }

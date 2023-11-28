@@ -9,6 +9,7 @@ module.exports.date = async (req, res) => {
     try {
         let { year, month } = req.query;
         let { id } = req.params;
+        let months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
         let date = new Date();
         let todayDate = date.getDate();
@@ -44,24 +45,20 @@ module.exports.date = async (req, res) => {
                     }
                     for(let i=0; i<data.length; i++){
                     let onThatDateDetail= await completionModel.findOne({
-                        // change a littlebit here below in compdate,compyear and compmonth
                         $and: [{habit:data[i]._id}, 
                         {allDate:`${year}-${month}-${paramDate}`}
-                        // {compDate:paramDate},{compYear:year},{compMonth:month}
                     ]
                     })
                     dateDetail.push(onThatDateDetail);
                     }
 
-                    // console.log(dateDetail);
-                    // res.redirect("/home");
-                    // res.redirect(`/date/${paramss.id}/?year=${queries.year}&&month=${queries.month}`);
                     return res.render("home", {
                         data,
                         paramDate,
                         year,
                         month,
-                        dateDetail
+                        dateDetail,
+                        months
                     })
                 } else {
                     res.redirect("/");

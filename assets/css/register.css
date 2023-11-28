@@ -3,62 +3,20 @@
     padding: 0;
     margin: 0;
 }
-
 .logsin {
     display: flex;
     gap: 20px;
 }
-
-/* .form1{
-    display: flex;
-    justify-content: center;
-} */
 .form2 {
     display: none;
 }
-
 .logsin :first-child {
     border-bottom: 3px solid blue;
 }
-
 h3 {
     padding-bottom: 5px;
     cursor: pointer;
 }
-
-/* input {
-    outline: none;
-    background: transparent;
-    padding: 2px 5px;
-    border: 1px solid black;
-    height: 35px;
-} */
-/* .div {
-    position: relative;
-    margin: 35px 0px;
-} */
-
-/* label {
-    position: absolute;
-    pointer-events: none;
-    opacity: .8;
-    left: 0;
-    font-size: 15px;
-    padding: 5px;
-    margin-left: 3px;
-}
-
-input:focus+label,input:valid+label {
-    transform: translateY(-10px);
-    background-color: white;
-    opacity: 1;
-    font-size: 12px;
-    padding: 0px 6px;
-}
-input:focus{
-    border-color: aquamarine;
-} */
-
 @media only screen and (max-width:340px) {
     body {
         font-size: 12px;

@@ -8,7 +8,6 @@
 .flex {
     display: flex;
     overflow: auto;
-    /* remove scroll bar  */
 }
 .ul1 {
     padding: 2px 4px;
@@ -16,7 +15,6 @@
     max-height: 62vh;
     margin: 4px 4px;
     overflow: auto;
-    /* remove scroll bar  */
 }
 .green{
     border: 2px solid rgb(0, 255, 0);
@@ -51,7 +49,6 @@ h4,small {
     display: block;
     width: 85%;
     overflow: auto;
-    /* remove scroll bar  */
 }
 #updatingHabit{
     display: none;
@@ -71,4 +68,7 @@ h4,small {
 }
 .fa-trash-can {
     color: red;
+}
+h4::-webkit-scrollbar,small::-webkit-scrollbar,.ul1::-webkit-scrollbar,.flex::-webkit-scrollbar{
+    display: none;
 }

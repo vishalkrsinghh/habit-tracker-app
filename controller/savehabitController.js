@@ -21,9 +21,7 @@ module.exports.saveHabit = async (req, res) => {
             let isUser = await userCollection.findOne({ _id: decodedDataOfToken._id });
 
             if (isUser) {
-
                 let date1 = new Date();
-
                 let todayDate = date1.getDate();
                 let currentMonth = date1.getMonth() + 1;
                 let currentYear = date1.getFullYear();
@@ -49,7 +47,7 @@ module.exports.saveHabit = async (req, res) => {
                     if(date<=todayDate){
 
                         for(let i=date; i<=todayDate; i++){
-                            // change a littlebit here below in compdate,compyear and compmonth
+                           
                             if(currentMonth<10){
                                 currentMonth="0"+currentMonth;
                             }
@@ -57,9 +55,6 @@ module.exports.saveHabit = async (req, res) => {
                                 i="0"+i;
                             }
                             let completeStatus=await completionModel.create({
-                                // compDate:i,
-                                // compMonth:currentMonth,
-                                // compYear:currentYear,
                                 allDate:`${currentYear}-${currentMonth}-${i}`,
                                 habit:habit._id
                             })
@@ -75,7 +70,7 @@ module.exports.saveHabit = async (req, res) => {
                         console.log('Running a job at 01:00 in night at Asia/Kolkata');
                         let isHabit = await habitCollectionModel.findOne({ _id: habit._id });
                         if (isHabit) {
-                            // change a littlebit here below in compdate,compyear and compmonth
+                
                             if(currentMonth<10){
                                 currentMonth="0"+currentMonth;
                             }
@@ -83,9 +78,6 @@ module.exports.saveHabit = async (req, res) => {
                                 todayDate="0"+todayDate;
                             }
                             let completeStatus=await completionModel.create({
-                                // compDate:todayDate,
-                                // compMonth:currentMonth,
-                                // compYear:currentYear,
                                 allDate:`${currentYear}-${currentMonth}-${todayDate}`,
                                 habit:isHabit._id
                             })
@@ -100,13 +92,6 @@ module.exports.saveHabit = async (req, res) => {
                     });
                     // task.start();
                     // task.stop(); if want to stop task.
-
-                    // console.log(habit);
-                    // return res.render("home")
-                    // return res.redirect("/home")
-
-                    // res.redirect("/home");
-                    // res.redirect(`/date/${todayDate}/?year=${currentYear}&&month=${currentMonth}`); // when user creates new habit then send it to current date/day.
                     res.redirect(`/date/${date}/?year=${year}&&month=${month}`);  // when user creates new habit then send it to that date/day for wich user creates the habit..
                 }
             } else {

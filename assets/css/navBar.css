@@ -1,4 +1,7 @@
-
+#navBar {
+    position: sticky;
+    top: 0px;
+}
 .ul{
     background-color: aquamarine;
     list-style-type: none;

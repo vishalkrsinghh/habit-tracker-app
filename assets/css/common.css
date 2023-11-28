@@ -22,7 +22,6 @@ label {
     padding: 5px;
     margin-left: 3px;
 }
-
 input:focus+label,input:valid+label {
     transform: translateY(-10px);
     background-color: white;
@@ -32,4 +31,7 @@ input:focus+label,input:valid+label {
 }
 input:focus{
     border-color: aquamarine;
+}
+a{
+    text-decoration: none;
 }
