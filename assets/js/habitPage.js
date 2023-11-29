@@ -16,7 +16,7 @@ for(let i=0; i<pencil.length; i++){
         let {title,desc}=pencil[i].dataset
         updateTitle.value=title;
         updateDescription.value=desc;
-        console.log(idToUpdate, " title== ", title, " desc= ", desc);
+        // console.log(idToUpdate, " title== ", title, " desc= ", desc);
         updatingHabit.style.display="flex";
         updatingHabit.style.alignItems="center";
         updatingHabit.style.flexDirection="column";

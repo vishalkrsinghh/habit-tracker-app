@@ -5,6 +5,7 @@ let data0 = document.getElementById("data0");
 let _id = localStorage.getItem("id");
 // console.log(typeof JSON.parse(_id));
 let days = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+let months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 let x = 0;
 
 if (_id != "null") {
@@ -16,8 +17,7 @@ if (_id != "null") {
 
         let data = xhrReq.responseText;
         data = JSON.parse(data);
-        console.log(data.data);
-        console.log( data.data[0].complStatus)
+        // console.log( data.data[0].complStatus);
 
         if (data.data.length == 0) {
             data0.style.display = "block";
@@ -28,8 +28,8 @@ if (_id != "null") {
             data0.style.display = "none";
             table.style.display = "table";
             let startingMonth = new Date(data.data[0].allDate).getMonth() + 1;
-            // let startingMonth2 = new Date(data.data[0].allDate).getMonth() + 1;
-            let startingMonth2 = 9;
+            let startingMonth2 = new Date(data.data[0].allDate).getMonth() + 1;
+
             let startingYear = new Date(data.data[0].allDate).getFullYear();
             let len = data.data.length;
             let endingMonth = new Date(data.data[len - 1].allDate).getMonth() + 1;
@@ -40,7 +40,7 @@ if (_id != "null") {
             let newTr = document.createElement("tr");
             let i = 1;
             let k = 0;
-            for (let j = new Date(`${startingYear}-${5}-1`),o=0; j <= new Date(`${endingYear}-${endingMonth}-${new Date().getDate()}`); j.setDate(j.getDate() + 1)) {
+            for (let j = new Date(`${startingYear}-${startingMonth}-1`),o=0; j <= new Date(`${endingYear}-${endingMonth}-${new Date().getDate()}`); j.setDate(j.getDate() + 1)) {
                 // for (let j = new Date(`${startingYear}-${9}-15`); j <= new Date(`${2023}-${11}-${28}`); j.setDate(j.getDate() + 1)) {
 
                 let mon = j.getMonth() + 1;
@@ -50,7 +50,7 @@ if (_id != "null") {
                 if (i % 2 == 0) {
 
                     let td = document.createElement("td");
-                    console.log(j.getDate()," "," = ",new Date( data.data[o].allDate.slice(0,10)).getDate())
+                    // console.log(j.getDate()," "," = ",new Date( data.data[o].allDate.slice(0,10)).getDate())
                     if(j.getDate()==new Date( data.data[o].allDate.slice(0,10)).getDate() && j.getMonth()==new Date( data.data[o].allDate.slice(0,10)).getMonth() && j.getFullYear()==new Date( data.data[o].allDate.slice(0,10)).getFullYear()){
                         if(data.data[o].complStatus==true){
                             td.innerHTML = 
@@ -73,7 +73,6 @@ if (_id != "null") {
                             newTr.appendChild(td);
                       }
 
-
                     table.appendChild(newTr);
                     k++;
                     if (k == 7) {
@@ -87,6 +86,10 @@ if (_id != "null") {
                 } else {
 
                     if (x == 0) {
+                        let t=document.createElement("tr");
+                        t.className="t";
+                        t.innerHTML=`<th colspan="7">${months[j.getMonth()]}-${j.getFullYear()} </th>`;
+                        table.appendChild(t);
                         let tr = document.createElement("tr");
                         let dt = j.getDay();
                         let su = 7 - dt;
@@ -150,6 +153,10 @@ if (_id != "null") {
                     startingMonth2 = mon;
 
                     if(x!=1){
+                        let t=document.createElement("tr");
+                        t.className="t";
+                        t.innerHTML=`<th colspan="7">${months[j.getMonth()]}-${j.getFullYear()} </th>`;
+                        table.appendChild(t);
                         let tr = document.createElement("tr");
                         let dt = j.getDay();
                         let su = 7 - dt;

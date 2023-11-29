@@ -10,8 +10,8 @@ let btn= document.getElementsByClassName("btn");
 
 let date = new Date();
 
-console.log(date.getMonth());
-console.log(new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate());
+// console.log(date.getMonth());
+// console.log(new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate());
 let noOfDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 let todayDate = date.getDate();
 let currentMonth = date.getMonth();  // give current month from 0 
@@ -20,7 +20,7 @@ let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
 let days= ["Sun","Mon","Tue","Wed","Thr","Fri","Sat"];
 
 let firstDay= new Date(currentYear,currentMonth,1).getDay();
-console.log(firstDay);
+// console.log(firstDay);
 let su = 7 - firstDay;
 for (let i = 1; i <= noOfDays; i++,firstDay++) {
 
@@ -30,7 +30,7 @@ for (let i = 1; i <= noOfDays; i++,firstDay++) {
             }
         }
 
-    container.innerHTML += `<button class="btn"> <a href="/date/${i}/?year=${date.getFullYear()}&&month=${date.getMonth() + 1}"><div>${days[firstDay]}</div> <span class="span"> ${i} </span> </a> </button> `
+    container.innerHTML += `<a href="/date/${i}/?year=${date.getFullYear()}&&month=${date.getMonth() + 1}"><button class="btn"><div>${days[firstDay]}</div> <span class="span"> ${i} </span></button></a> `
 
 
 }
@@ -40,21 +40,20 @@ let a = document.getElementsByTagName("a");
 let href = window.location.href;
 let arr = href.split("/");
 btn[arr[4]-1].style.backgroundColor="cyan";
-console.log(arr);
+// console.log(arr);
 let date1 = Number(arr[4]);
 let year = Number(arr[5].slice(6, 10));
-let month = Number(arr[5].slice(18)); // give  month from 1
+let month = Number(arr[5].slice(18)); 
 // console.log(date1,month,year);
 localStorage.setItem("date", date1);
 localStorage.setItem("year", year);
 localStorage.setItem("month", month);
-for (let i = 0; i < a.length; i++) {
-    a[i].onclick = (e) => {
-        // e.preventDefault(); // jabtak xmlhttp req nahi karta tab tak isko off rahne de.
-
-        // habitsaveform.setAttribute("action",`/date/${date}/?year=${year}&&month=${month}`)  // if preventdefault on then on this. if prevent default off then off this.
-    };
-}
+// for (let i = 0; i < a.length; i++) {
+//     a[i].onclick = (e) => {
+//         // e.preventDefault(); // jabtak xmlhttp req nahi karta tab tak isko off rahne de.
+//         // habitsaveform.setAttribute("action",`/date/${date}/?year=${year}&&month=${month}`)  // if preventdefault on then on this. if prevent default off then off this.
+//     };
+// }
 
 let d = Number(localStorage.getItem("date"));
 let m = Number(localStorage.getItem("month"));

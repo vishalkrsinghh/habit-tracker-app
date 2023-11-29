@@ -13,7 +13,6 @@
     overflow-x: auto;
     padding: 5px 8px;
     gap: 10px;
-    /* scrollbar ki display none de  */
 }
 
 #addHabit {
@@ -28,7 +27,6 @@
     list-style-type: none;
     margin-top: 40px;
     padding-left: 0px;
-    /* scrollbar ki display none de  */
 }
 .habits::-webkit-scrollbar,#container::-webkit-scrollbar{
     display: none;
@@ -122,6 +120,7 @@ thead {
     border: 1px solid black;
     min-width: 40px;
     max-height: 47px;
+    cursor: pointer;
 }
 @media only screen and (max-width:281px) {
     table{

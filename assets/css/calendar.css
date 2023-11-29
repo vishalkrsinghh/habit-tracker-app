@@ -25,3 +25,9 @@ table{
     width: auto;
     margin: auto;
 }
+tr.t {
+    background: aquamarine;
+}
+h3{
+    text-align: center;
+}

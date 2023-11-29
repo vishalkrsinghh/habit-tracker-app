@@ -12,12 +12,12 @@ module.exports.completeStatus = async (req, res) => {
         value = JSON.parse(`${value}`.toLowerCase());
 
         let check = await completionModel.findByIdAndUpdate(id, { complStatus: value });
-        console.log("check", check);
+        // console.log("check", check);
 
         // console.log(id,typeof id, month, year,typeof value, value);
         res.redirect(`/date/${id2}/?year=${year}&&month=${month}`);
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({
             Error: " Error in Code, Server Side Error .",
             data: { error }

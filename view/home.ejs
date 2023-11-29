@@ -34,15 +34,15 @@
                                 <%if(dateDetail[i].complStatus==true){%>
                                     <a
                                         href="/complitionstatus/<%=dateDetail[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=false">
-                                        <i class="fa-solid fa-circle-check"></i> </a>
+                                        <i class="fa-solid fa-circle-check" title="Done"></i> </a>
                                     <%}else if(dateDetail[i].complStatus==false){%>
                                         <a
                                             href="/complitionstatus/<%=dateDetail[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=null">
-                                            <i class="fa-sharp fa-solid fa-circle-xmark"></i> </a>
+                                            <i class="fa-sharp fa-solid fa-circle-xmark" title="Incomplete"></i> </a>
                                         <%} else{%>
                                             <a
                                                 href="/complitionstatus/<%=dateDetail[i]._id%>/<%=paramDate%>/?year=<%=year%>&&month=<%=month%>&&value=true">
-                                                <i class="fa-solid fa-circle"></i> </a>
+                                                <i class="fa-solid fa-circle" title="Not Done"></i> </a>
                                             <%}%>
                             </span>
                         </td>

@@ -21,7 +21,7 @@ module.exports.getCalendarPage = async (req, res) => {
             return res.render("register");
         }
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({
             message: "server side error/ Error in server side code"
         })
@@ -52,7 +52,7 @@ module.exports.getCalendar = async (req, res) => {
                 }
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(200).json({
             message: "Send the correct habit Id",
             data:[]

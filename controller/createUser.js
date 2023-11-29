@@ -114,7 +114,7 @@ module.exports.login = async (req, res) => {
             })
         }
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({
             Error: "Error in login, Error in Code, Server Side Error .",
             data: { error }

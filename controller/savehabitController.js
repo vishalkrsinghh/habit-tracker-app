@@ -67,7 +67,7 @@ module.exports.saveHabit = async (req, res) => {
                     // let task = cron.schedule('0 1 * * *', async () => { //raat k 1 baj k 0 mint
                     let task = cron.schedule('1 0 * * *', async () => {  // raat k 12 baj k 1 mint
                     // let task = cron.schedule('*/3 * * * *', async () => { // for testing purpose every 3 minutes.
-                        console.log('Running a job at 01:00 in night at Asia/Kolkata');
+                        // console.log('Running a job at 01:00 in night at Asia/Kolkata');
                         let isHabit = await habitCollectionModel.findOne({ _id: habit._id });
                         if (isHabit) {
                 
@@ -103,7 +103,7 @@ module.exports.saveHabit = async (req, res) => {
             return res.redirect("/");
         }
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({
             message: "server side error/ Error in server side code"
         })
