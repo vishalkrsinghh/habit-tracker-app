@@ -64,11 +64,11 @@ module.exports.saveHabit = async (req, res) => {
                     }
 
 
-                    // let task = cron.schedule('0 1 * * *', async () => { //raat k 1 baj k 0 mint
+                    let task = cron.schedule('0 1 * * *', async () => {  //raat k 1 baj k 0 mint
                     // let task = cron.schedule('1 0 * * *', async () => {  // raat k 12 baj k 1 mint
-                    let task = cron.schedule('*/3 * * * *', async () => { // for testing purpose every 3 minutes.
-                        // console.log('Running a job at 01:00 in night at Asia/Kolkata');
-                        console.log('Running a job at every 3 minutes...... at Asia/Kolkata');
+                    // let task = cron.schedule('*/3 * * * *', async () => { // for testing purpose every 3 minutes.
+                        console.log('Running a job at 01:00 in night at Asia/Kolkata');
+                        // console.log('Running a job at every 3 minutes...... at Asia/Kolkata');
                         let isHabit = await habitCollectionModel.findOne({ _id: habit._id });
                         if (isHabit) {
                 
