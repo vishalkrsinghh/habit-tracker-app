@@ -41,17 +41,11 @@ module.exports.saveHabit = async (req, res) => {
                     })
                 }
                 else {
-                    let d_d_=new Date();
-                    d_d_.setDate(date);
-                    d_d_.setFullYear(year);
-                    d_d_.setMonth(month-1);
-                    d_d_.setHours(d_d_.getHours()+5);
-                    d_d_.setMinutes(d_d_.getMinutes()+30);
+                  
                     let habit = await habitCollectionModel.create({
                         habitTitle: habitTitle,
                         habitDescription: habitDescription,
-                        // startingDate: `${year}-${month}-${date}`,
-                        startingDate: d_d_,
+                        startingDate: `${year}-${month}-${date}`,
                         // startingDate: date,
                         // startingMonth: month,
                         // startingYear: year,
@@ -104,8 +98,7 @@ module.exports.saveHabit = async (req, res) => {
                                 todayDate = "0" + todayDate;
                             }
                             let completeStatus = await completionModel.create({
-                                // allDate: `${currentYear}-${currentMonth}-${todayDate}`,
-                                allDate: dt,
+                                allDate: `${currentYear}-${currentMonth}-${todayDate}`,
                                 habit: isHabit._id
                             })
 
