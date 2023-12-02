@@ -22,10 +22,6 @@ app.set("views", path.join(__dirname,"view"));
 app.use("/", require("./routes/registerRoute"));
 
 app.listen(PORT,()=>{
-    let date= new Date();
-    date.setHours(date.getHours()+5);
-    date.setMinutes(date.getMinutes()+30);
-    console.log(new Date(date.toISOString()), " = ", typeof new Date(date.toISOString()));
-    console.log(date, " = ", typeof date);
+    console.log(new Date(new Date().setDate(new Date().getDate()-6)));
     console.log("srvr rn");
 })
