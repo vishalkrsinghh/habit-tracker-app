@@ -38,15 +38,15 @@ module.exports.date = async (req, res) => {
                     if(paramDate<10){
                         paramDate="0"+paramDate;
                     }
-                    let d_d=new Date();
-                    d_d.setDate(paramDate);
-                    d_d.setFullYear(year);
-                    d_d.setMonth(month-1);
-                    d_d.setHours(d_d.getHours()+5);
-                    d_d.setMinutes(d_d.getMinutes()+30);
+                    // let d_d=new Date();
+                    // d_d.setDate(paramDate);
+                    // d_d.setFullYear(year);
+                    // d_d.setMonth(month-1);
+                    // d_d.setHours(d_d.getHours()+5);
+                    // d_d.setMinutes(d_d.getMinutes()+30);
                     let data = await habitCollectionModel.find({
                         // $and: [{ startingDate: { $gte: 1, $lte: paramDate } }, { startingMonth: currentMonth }, { startingYear: currentYear }, { user: decodedDataOfToken._id }]///
-                        $and: [{ startingDate: { $lte: d_d } },{ user: decodedDataOfToken._id }]    //NEXT MONTH PROBLEM IN HOME PAGE CHECK HERE.
+                        $and: [{ startingDate: { $lte: `${year}-${month}-${paramDate}`} },{ user: decodedDataOfToken._id }]    //NEXT MONTH PROBLEM IN HOME PAGE CHECK HERE.
                     })
 
                     let dateDetail=[];
@@ -54,8 +54,7 @@ module.exports.date = async (req, res) => {
                     for(let i=0; i<data.length; i++){
                     let onThatDateDetail= await completionModel.findOne({
                         $and: [{habit:data[i]._id}, 
-                        // {allDate:`${year}-${month}-${paramDate}`}  //////////PREVIOUS THIS if ERROR WATCH HERE
-                        {allDate:d_d}   ////// if ERROR WATCH HERE
+                        {allDate:`${year}-${month}-${paramDate}`}  //////////PREVIOUS THIS if ERROR WATCH HERE
                     ]
                     })
                     dateDetail.push(onThatDateDetail);
