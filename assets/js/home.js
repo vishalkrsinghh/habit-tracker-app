@@ -10,7 +10,7 @@ let btn= document.getElementsByClassName("btn");
 
 let date = new Date();
 
-// console.log(date.getMonth());
+// console.log(new Date());
 // console.log(new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate());
 let noOfDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 let todayDate = date.getDate();
