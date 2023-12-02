@@ -85,7 +85,8 @@ module.exports.login = async (req, res) => {
                     res.cookie('jwtToken', token, { maxAge: 60 * 60 * 1000, httpOnly: true });  // 1000 means 1 sec, this cookie expires in 20 minutes as token expires in 20 minutes.
 
                     let date = new Date();
-
+                    date.setHours(date.getHours()+5);
+                    date.setMinutes(date.getMinutes()+30);
                     let todayDate = date.getDate();
                     let currentMonth = date.getMonth()+1;
                     let currentYear = date.getFullYear();

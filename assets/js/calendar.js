@@ -18,6 +18,7 @@ if (_id != "null") {
         let data = xhrReq.responseText;
         data = JSON.parse(data);
         // console.log( data.data[0].complStatus);
+        // console.log(data.data);
 
         if (data.data.length == 0) {
             data0.style.display = "block";
@@ -27,6 +28,7 @@ if (_id != "null") {
         else {
             data0.style.display = "none";
             table.style.display = "table";
+            // console.log(typeof data.data[0].allDate," ",data.data[0].allDate);
             let startingMonth = new Date(data.data[0].allDate).getMonth() + 1;
             let startingMonth2 = new Date(data.data[0].allDate).getMonth() + 1;
 
@@ -34,14 +36,14 @@ if (_id != "null") {
             let len = data.data.length;
             let endingMonth = new Date(data.data[len - 1].allDate).getMonth() + 1;
             let endingYear = new Date(data.data[len - 1].allDate).getFullYear();
-            let LastDateOfEndingMonth = new Date(endingYear, endingMonth, 0).getDate();
-            // console.log(startingMonth," ", endingMonth," ",LastDateOfEndingMonth);
+            // let LastDateOfEndingMonth = new Date(endingYear, endingMonth, 0).getDate();
+            // console.log(startingMonth," ", startingYear," ",endingMonth," ",endingYear);
             let tr = document.createElement("tr");
             let newTr = document.createElement("tr");
             let i = 1;
             let k = 0;
             for (let j = new Date(`${startingYear}-${startingMonth}-1`),o=0; j <= new Date(`${endingYear}-${endingMonth}-${new Date().getDate()}`); j.setDate(j.getDate() + 1)) {
-                // for (let j = new Date(`${startingYear}-${9}-15`); j <= new Date(`${2023}-${11}-${28}`); j.setDate(j.getDate() + 1)) {
+            // for (let j = new Date(`${startingYear}-${9}-15`); j <= new Date(); j.setDate(j.getDate() + 1)) {
 
                 let mon = j.getMonth() + 1;
                 let yr = j.getFullYear();

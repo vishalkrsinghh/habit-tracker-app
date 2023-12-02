@@ -13,7 +13,8 @@ module.exports.register = async (req, res) => {
 
         if (isUser) {
             let date = new Date();
-
+            date.setHours(date.getHours()+5);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.
+            date.setMinutes(date.getMinutes()+30);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.
             let todayDate = date.getDate();
             let currentMonth = date.getMonth()+1;
             let currentYear = date.getFullYear();

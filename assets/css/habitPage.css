@@ -50,6 +50,9 @@ h4,small {
     width: 85%;
     overflow: auto;
 }
+.h3{
+    text-align: center;
+}
 #updatingHabit{
     display: none;
 }

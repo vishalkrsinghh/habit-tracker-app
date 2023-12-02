@@ -5,6 +5,9 @@
 
     <div id="hide_unhide_onupdate">
 
+        <%if(allHabits.length==0){%>
+            <h3 class="h3">No Habits To Show.</h3>
+            <%}else{%>
         <ul class="ul1">
 
             <%for(let i=0; i<allHabits.length; i++){%>
@@ -17,10 +20,11 @@
                     <small><%=allHabits[i].habitDescription%></small>
                         <div class="flex">
                             <%let abc;%>
-                            <%for(let j=new Date(`${yearD}-${monthD}-${startD}`),k=0; j<=new
-                                Date(`${currentYear}-${currentMonth}-${todayDate}`);j.setDate(j.getDate() + 1)){%>
 
+                            <%for(let j=new Date(new Date(new Date().setDate(new Date().getDate()-6)).setHours(new Date().getHours()+5,30)),k=0; j<=date;j.setDate(j.getDate() + 1)){%>
 
+                                <%console.log(" srt = "," ",new Date(new Date(new Date().setDate(new Date().getDate()-6)).setHours(new Date().getHours()+5,30))) %>
+                                <%console.log(" end = "," ",date) %>
                                     <%if(k<sevenDay[i].length){%>
                                         <% abc=sevenDay[i][k]%>
                                     <%}%>
@@ -47,6 +51,7 @@
             <%}%>
 
         </ul>
+        <%}%>
 
     </div>
 

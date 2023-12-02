@@ -8,6 +8,8 @@ module.exports.allHabits = async (req, res) => {
     try {
 
         let date = new Date();
+        date.setHours(date.getHours()+5);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.
+        date.setMinutes(date.getMinutes()+30);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.
         let todayDate = date.getDate();
         let currentMonth = date.getMonth() + 1;
         let currentYear = date.getFullYear();
@@ -22,15 +24,14 @@ module.exports.allHabits = async (req, res) => {
                 let allHabits = await habitCollectionModel.find({ user:isUser._id});
                 // console.log(allHabits.length, allHabits);
                 let sevenDay=[]
-                let start=new Date(new Date().setDate(new Date().getDate()-7))
-                let startD=new Date(new Date().setDate(new Date().getDate()-7)).getDate()+1;
-                let monthD=new Date(new Date().setDate(new Date().getDate()-7)).getMonth()+1;
-                let yearD=new Date(new Date().setDate(new Date().getDate()-7)).getFullYear();
+                // let start=new Date(new Date().setDate(new Date().getDate()-7))
+                // let start=new Date(new Date().setDate(new Date().getDate()-6)); //// SET IT ALSO TO INDIAN DATE.
+                let start=new Date(new Date(new Date().setDate(new Date().getDate()-6)).setHours(new Date().getHours()+5,30)); //// SET IT ALSO TO INDIAN DATE.
                 for(let i=0; i<allHabits.length; i++){
                     let sevenDays= await completionModel.find({
 
                         $and: [{habit:allHabits[i]._id}, 
-                        {allDate: { $gte: start, $lte: new Date() }}
+                        {allDate: { $gte: start, $lte: date }}
                     ]
                     })
                     sevenDay.push(sevenDays);
@@ -39,9 +40,8 @@ module.exports.allHabits = async (req, res) => {
 
                 res.render("habitPage", {
                     allHabits,
-                    startD,
-                    monthD,
-                    yearD,
+                    start,
+                    date,
                     sevenDay,
                     todayDate,
                     currentMonth,

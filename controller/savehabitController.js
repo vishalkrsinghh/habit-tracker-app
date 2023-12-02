@@ -1,5 +1,5 @@
 
-let cron = require('node-cron');
+let CronJob = require('cron').CronJob;
 let jwt = require("jsonwebtoken");
 let userCollection = require("../model/userModel");
 let habitCollectionModel = require("../model/habitModel");
@@ -22,77 +22,100 @@ module.exports.saveHabit = async (req, res) => {
 
             if (isUser) {
                 let date1 = new Date();
+                date1.setHours(date1.getHours()+5);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.
+                date1.setMinutes(date1.getMinutes()+30);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.
                 let todayDate = date1.getDate();
                 let currentMonth = date1.getMonth() + 1;
                 let currentYear = date1.getFullYear();
+                console.log( "INDIAN date1= "," ",date1);
 
+                if (month < 10) {
+                    month = "0" + month;
+                }
+                if (date < 10) {
+                    date = "0" + date;
+                }
                 if (date > todayDate || month > currentMonth || year > currentYear || date < 1 || month < currentMonth || year < currentYear || isNaN(month) || isNaN(date) || isNaN(year)) {
                     res.status(400).json({
                         message: "Please send current month's date and current year, and don't try to go in future."
                     })
                 }
                 else {
+                    let d_d_=new Date();
+                    d_d_.setDate(date);
+                    d_d_.setFullYear(year);
+                    d_d_.setMonth(month-1);
+                    d_d_.setHours(d_d_.getHours()+5);
+                    d_d_.setMinutes(d_d_.getMinutes()+30);
                     let habit = await habitCollectionModel.create({
                         habitTitle: habitTitle,
                         habitDescription: habitDescription,
-                        startingDate: date,
-                        startingMonth: month,
-                        startingYear: year,
+                        // startingDate: `${year}-${month}-${date}`,
+                        startingDate: d_d_,
+                        // startingDate: date,
+                        // startingMonth: month,
+                        // startingYear: year,
                         user: isUser._id
                     })
 
                     isUser.habits.push(habit._id);
                     isUser.save();
-                    
-                    if(date<=todayDate){
 
-                        for(let i=date; i<=todayDate; i++){
-                           
-                            if(currentMonth<10){
-                                currentMonth="0"+currentMonth;
+                    if (date <= todayDate) {
+
+                        for (let i = date; i <= todayDate; i++) {
+                            if (currentMonth < 10) {
+                                currentMonth = "0" + currentMonth;
                             }
-                            if(i<10){
-                                i="0"+i;
+                            if (i > date && i < 10) {
+                                i = "0" + i;
                             }
-                            let completeStatus=await completionModel.create({
-                                allDate:`${currentYear}-${currentMonth}-${i}`,
-                                habit:habit._id
+                            // console.log(i, " ", currentMonth);
+                            let completeStatus = await completionModel.create({
+                                allDate: `${currentYear}-${currentMonth}-${i}`,
+                                habit: habit._id
                             })
                             habit.completionStatus.push(completeStatus._id);
                         }
-                         habit.save();
+                        habit.save();
                     }
 
-
-                    let task = cron.schedule('0 1 * * *', async () => {  //raat k 1 baj k 0 mint
-                    // let task = cron.schedule('1 0 * * *', async () => {  // raat k 12 baj k 1 mint
-                    // let task = cron.schedule('*/3 * * * *', async () => { // for testing purpose every 3 minutes.
+                    // ('sec0-59 min0-59 hour0-23')
+                    // let taskJob = new CronJob('0 0 1 * * 0-6', async () => {  //raat k 1 baj k 0 mint
+                    let taskJob = new CronJob('0 1 0 * * 0-6', async () => {  // raat k 12 baj k 1 mint
+                    // let taskJob = new CronJob('0 22 14 * * 0-6', async () => {  //indiantimezone (BECAUSE WE HAVE Passed ANOTHER PARAM AS 'Asia/Kolkata') dopahar k 2 baj k 22 mint
+                    // let taskJob = new CronJob('0 */3 * * * 0-6', async () => {  // for testing purpose every 3 minutes.
+                        
+                        let dt= new Date();
+                        dt.setHours(dt.getHours()+5);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.
+                        dt.setMinutes(dt.getMinutes()+30);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.
+                        todayDate = dt.getDate();
+                        currentMonth = dt.getMonth() + 1;
+                        currentYear = dt.getFullYear();
                         console.log('Running a job at 01:00 in night at Asia/Kolkata');
                         // console.log('Running a job at every 3 minutes...... at Asia/Kolkata');
                         let isHabit = await habitCollectionModel.findOne({ _id: habit._id });
                         if (isHabit) {
-                
-                            if(currentMonth<10){
-                                currentMonth="0"+currentMonth;
+
+                            if (currentMonth < 10) {
+                                currentMonth = "0" + currentMonth;
                             }
-                            if(todayDate<10){
-                                todayDate="0"+todayDate;
+                            if (todayDate < 10) {
+                                todayDate = "0" + todayDate;
                             }
-                            let completeStatus=await completionModel.create({
-                                allDate:`${currentYear}-${currentMonth}-${todayDate}`,
-                                habit:isHabit._id
+                            let completeStatus = await completionModel.create({
+                                // allDate: `${currentYear}-${currentMonth}-${todayDate}`,
+                                allDate: dt,
+                                habit: isHabit._id
                             })
 
                             isHabit.completionStatus.push(completeStatus._id);
                             isHabit.save();
                         }
 
-                    }, {
-                        scheduled: true,
-                        timezone: "Asia/Kolkata"
-                    });
-                    task.start();
-                    // task.stop(); if want to stop task.
+                    }, null, true, 'Asia/Kolkata');
+                    // }, null, true, 'America/New_York');
+                    taskJob.start();
                     res.redirect(`/date/${date}/?year=${year}&&month=${month}`);  // when user creates new habit then send it to that date/day for wich user creates the habit..
                 }
             } else {
