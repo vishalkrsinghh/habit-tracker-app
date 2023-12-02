@@ -20,6 +20,9 @@
                             <%for(let j=new Date(`${yearD}-${monthD}-${startD}`),k=0; j<=new
                                 Date(`${currentYear}-${currentMonth}-${todayDate}`);j.setDate(j.getDate() + 1)){%>
 
+                                    <% console.log(" strt = "," ",new Date(`${yearD}-${monthD}-${startD}`)) %>
+                                    <% console.log(" lessthen = "," ",new
+                                Date(`${currentYear}-${currentMonth}-${todayDate}`)) %>
 
                                     <%if(k<sevenDay[i].length){%>
                                         <% abc=sevenDay[i][k]%>
