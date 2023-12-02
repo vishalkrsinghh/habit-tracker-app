@@ -22,5 +22,6 @@ app.set("views", path.join(__dirname,"view"));
 app.use("/", require("./routes/registerRoute"));
 
 app.listen(PORT,()=>{
+    console.log(new Date());
     console.log("srvr rn");
 })
