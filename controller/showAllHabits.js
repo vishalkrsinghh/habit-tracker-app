@@ -26,17 +26,7 @@ module.exports.allHabits = async (req, res) => {
                 let sevenDay=[]
                 // let start=new Date(new Date().setDate(new Date().getDate()-7))
                 // let start=new Date(new Date().setDate(new Date().getDate()-6)); //// SET IT ALSO TO INDIAN DATE.
-                // let start=new Date(new Date(new Date().setDate(new Date().getDate()-6)).setHours(new Date().getHours()+5,30)); //// SET IT ALSO TO INDIAN DATE.
-                let date2 = new Date();
-                date2.setHours(date2.getHours()+5);
-                date2.setMinutes(date2.getMinutes()+30);
-                let date3 = new Date();
-                date3.setHours(date3.getHours()+5);
-                date3.setMinutes(date3.getMinutes()+30);
-                let start=new Date(new Date(date2.setDate(date2.getDate()-7))); //// SET IT ALSO TO INDIAN DATE.
-                console.log("Start "," = ",start);
-                console.log("date "," = ",date);
-                // console.log("Acc. to indian "," = ",new Date(new Date(date.setDate(date.getDate()-6))));
+                let start=new Date(new Date(new Date().setDate(new Date().getDate()-6)).setHours(new Date().getHours()+5,30)); //// SET IT ALSO TO INDIAN DATE.
                 for(let i=0; i<allHabits.length; i++){
                     let sevenDays= await completionModel.find({
 
@@ -52,7 +42,6 @@ module.exports.allHabits = async (req, res) => {
                     allHabits,
                     start,
                     date,
-                    date3,
                     sevenDay,
                     todayDate,
                     currentMonth,
