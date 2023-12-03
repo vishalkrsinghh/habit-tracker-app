@@ -75,9 +75,10 @@ module.exports.saveHabit = async (req, res) => {
                     }
 
                     // ('sec0-59 min0-59 hour0-23')
+                    // I have researched and find that cron job runs more then 15 minutes on Paid version.
                     // let taskJob = new CronJob('0 0 1 * * 0-6', async () => {  //raat k 1 baj k 0 mint
-                    // let taskJob = new CronJob('0 1 0 * * 0-6', async () => {  // raat k 12 baj k 1 mint
-                    let taskJob = new CronJob('0 20 0 * * 0-6', async () => {  // raat k 12 baj k 1 mint
+                    let taskJob = new CronJob('0 1 0 * * 0-6', async () => {  // raat k 12 baj k 1 mint
+                    // let taskJob = new CronJob('0 20 0 * * 0-6', async () => {  // raat k 12 baj k 20 mint
                     // let taskJob = new CronJob('0 22 14 * * 0-6', async () => {  //indiantimezone (BECAUSE WE HAVE Passed ANOTHER PARAM AS 'Asia/Kolkata') dopahar k 2 baj k 22 mint
                     // let taskJob = new CronJob('0 */3 * * * 0-6', async () => {  // for testing purpose every 3 minutes.
                         
