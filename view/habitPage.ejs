@@ -21,8 +21,8 @@
                         <div class="flex">
                             <%let abc;%>
 
-                            <%for(let j=new Date(new Date(date2.setDate(date2.getDate()-6))),k=0; j<=date;j.setDate(j.getDate() + 1)){%>
-
+                            <%for(let j=start,k=0; j<=date;j.setDate(j.getDate() + 1)){%>
+                                <%console.log("ejs j = "," = ",j)%>
                                     <%if(k<sevenDay[i].length){%>
                                         <% abc=sevenDay[i][k]%>
                                     <%}%>
