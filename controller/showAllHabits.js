@@ -30,7 +30,7 @@ module.exports.allHabits = async (req, res) => {
                 let date2 = new Date();
                 date2.setHours(date2.getHours()+5);
                 date2.setMinutes(date2.getMinutes()+30);
-                let start=new Date(new Date(date2.setDate(date2.getDate()-6))); //// SET IT ALSO TO INDIAN DATE.
+                let start=new Date(new Date(date2.setDate(date2.getDate()-7))); //// SET IT ALSO TO INDIAN DATE.
                 console.log("Start "," = ",start);
                 console.log("date "," = ",date);
                 // console.log("Acc. to indian "," = ",new Date(new Date(date.setDate(date.getDate()-6))));
