@@ -27,7 +27,10 @@ module.exports.allHabits = async (req, res) => {
                 // let start=new Date(new Date().setDate(new Date().getDate()-7))
                 // let start=new Date(new Date().setDate(new Date().getDate()-6)); //// SET IT ALSO TO INDIAN DATE.
                 // let start=new Date(new Date(new Date().setDate(new Date().getDate()-6)).setHours(new Date().getHours()+5,30)); //// SET IT ALSO TO INDIAN DATE.
-                let start=new Date(new Date(date.setDate(date.getDate()-6))); //// SET IT ALSO TO INDIAN DATE.
+                let date2 = new Date();
+                date2.setHours(date2.getHours()+5);
+                date2.setMinutes(date2.getMinutes()+30);
+                let start=new Date(new Date(date2.setDate(date2.getDate()-6))); //// SET IT ALSO TO INDIAN DATE.
                 console.log("Start "," = ",start);
                 console.log("date "," = ",date);
                 // console.log("Acc. to indian "," = ",new Date(new Date(date.setDate(date.getDate()-6))));
@@ -46,6 +49,7 @@ module.exports.allHabits = async (req, res) => {
                     allHabits,
                     start,
                     date,
+                    date2,
                     sevenDay,
                     todayDate,
                     currentMonth,
