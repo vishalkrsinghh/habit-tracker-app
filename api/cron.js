@@ -29,7 +29,9 @@ module.exports.handler = async (req, res) => {
             }
             allHabits.save();
     
-            return res.redirect("back");
+            return res.status(200).json({
+                message: "OK "
+            })
         } else {
             return;
         }
