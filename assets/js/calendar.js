@@ -61,11 +61,11 @@ if (_id != "null") {
                         }else if(data.data[o].complStatus==false){
 
                             td.innerHTML = 
-                            `<button class="red button"  title="Incomplete"> <strong> ${j.getDate()} </strong>  </button>`
+                            `<button class="red button"  title="Not done"> <strong> ${j.getDate()} </strong>  </button>`
                             newTr.appendChild(td);
                         }else{
                             td.innerHTML = 
-                            `<button class="yellow button"  title="Not Done"> <strong> ${j.getDate()} </strong>  </button>`
+                            `<button class="yellow button"  title="None"> <strong> ${j.getDate()} </strong>  </button>`
                             newTr.appendChild(td);
                             }
                          o++;
@@ -118,11 +118,11 @@ if (_id != "null") {
                         }else if(data.data[o].complStatus==false){
 
                             td.innerHTML = 
-                            `<button class="red button"  title="Incomplete"> <strong> ${j.getDate()} </strong>  </button>`
+                            `<button class="red button"  title="Not done"> <strong> ${j.getDate()} </strong>  </button>`
                             tr.appendChild(td);
                         }else{
                             td.innerHTML = 
-                            `<button class="yellow button"  title="Not Done"  > <strong> ${j.getDate()} </strong>  </button>`
+                            `<button class="yellow button"  title="None"  > <strong> ${j.getDate()} </strong>  </button>`
                             tr.appendChild(td);
                             }
                          o++;
