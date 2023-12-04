@@ -18,7 +18,7 @@ router.post("/date/:date",authentication.auth, require("../controller/savehabitC
 
 router.use("/date",authentication.auth,require("./getDate") );
 router.get("/allhabits",authentication.auth, require("../controller/showAllHabits").allHabits);
-              router.get("/api/cron", require("../api/cron").handler);
+              router.get("/api/cron", require("../api/cron").handler);//// this is for Vercel Deploy we can delete this 
 router.post("/update_habit/:idToUpdate",authentication.auth, require("../controller/updateHabit").updateHabit);
 router.get("/delete_habit/:idToDelete",authentication.auth,require("../controller/deleteHabit").deleteHabit);
 router.get("/calendar", authentication.auth, require("../controller/calendarController").getCalendarPage);
