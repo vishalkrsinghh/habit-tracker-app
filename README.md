@@ -6,9 +6,7 @@ The Habit Tracker App is a web application, where anyone can create habits and t
 
 ## Deployment
 
-```bash
 This App is Live on:- 
-```
 ( https://todo-list-m0e0.onrender.com )
  Paste this URL in your Browser 🌐.
 
@@ -97,8 +95,4 @@ See `contributing.md` for ways to get started.
 
 For support and feedback, please reach out to me at vk788043@gmail.com
 
-
-## Demo
-
-![App Screenshot](https://media.giphy.com/media/nDSlfqf0gn5g4/giphy.gif)
 
