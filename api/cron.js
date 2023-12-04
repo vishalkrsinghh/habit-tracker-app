@@ -25,7 +25,7 @@ module.exports.handler = async (req, res) => {
                     allDate: `${currentYear}-${currentMonth}-${todayDate}`,
                     habit: allHabits[i]._id
                 })
-                allHabits.completionStatus.push(completeStatus._id);
+                allHabits[i].completionStatus.push(completeStatus._id);
             }
             allHabits.save();
     
