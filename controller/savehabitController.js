@@ -81,7 +81,7 @@ module.exports.saveHabit = async (req, res) => {
                     // let taskJob = new CronJob('0 20 0 * * 0-6', async () => {  // raat k 12 baj k 20 mint
                     // let taskJob = new CronJob('0 22 14 * * 0-6', async () => {  //indiantimezone (BECAUSE WE HAVE Passed ANOTHER PARAM AS 'Asia/Kolkata') dopahar k 2 baj k 22 mint
                     // let taskJob = new CronJob('0 */3 * * * 0-6', async () => {  // for testing purpose every 3 minutes.
-                    let taskJob = new CronJob('* * 21 * * 0-6', async () => {  // for testing purpose raat k 9 baje.
+                    let taskJob = new CronJob('* 50 20 * * 0-6', async () => {  // for testing purpose raat k 8:50 baje.
                         
                         let dt= new Date();
                         dt.setHours(dt.getHours()+5);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.
