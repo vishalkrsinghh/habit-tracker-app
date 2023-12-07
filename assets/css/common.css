@@ -27,7 +27,7 @@ label {
 }
 input:focus+label,input:valid+label {
     transform: translateY(-10px);
-    background-color: white;
+    background-color: rgb(187, 221, 233);
     opacity: 1;
     font-size: 12px;
     padding: 0px 6px;
