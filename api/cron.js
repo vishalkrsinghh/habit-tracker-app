@@ -29,6 +29,7 @@ module.exports.handler = async (req, res) => {
                 allHabits[i].completionStatus.push(completeStatus._id);
                 allHabits[i].save();
             }
+
     
             return res.status(200).json({
                 message: "OK "
