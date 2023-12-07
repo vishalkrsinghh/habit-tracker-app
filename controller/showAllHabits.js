@@ -48,7 +48,7 @@ module.exports.allHabits = async (req, res) => {
                     })
                     sevenDay.push(sevenDays);
                 }
-                for(let u=0; u<sevenDays[2].length; u++){
+                for(let u=0; u<sevenDay[2].length; u++){
                     console.log(sevenDay[2][u]);
                 }
                 // console.log(sevenDay);
