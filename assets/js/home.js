@@ -30,6 +30,7 @@ for (let i = 1; i <= noOfDays; i++,firstDay++) {
             }
         }
 
+        // Home page all Dates link of current month.
     container.innerHTML += `<a href="/date/${i}/?year=${date.getFullYear()}&&month=${date.getMonth() + 1}"><button class="btn"><div>${days[firstDay]}</div> <span class="span"> ${i} </span></button></a> `
 
 

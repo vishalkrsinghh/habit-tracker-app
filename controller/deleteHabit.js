@@ -1,17 +1,19 @@
 
 let habitCollectionModel = require("../model/habitModel");
 let completionModel = require("../model/completionModel");
+// business logic of deleting a habit.
 module.exports.deleteHabit=async (req,res)=>{
 
     try {
         
         let idToDelete= req.params.idToDelete;
-        // await completionModel.remove({habit:idToDelete});
         let isHabitPresent=await habitCollectionModel.findByIdAndDelete(idToDelete);
         await completionModel.deleteMany({habit:idToDelete});
         if(isHabitPresent){
             res.redirect("back");
-        }else{
+        }
+        // idToDelete is wrong or wrong habit id given by user.
+        else{
             res.status(400).json({
                 message: "Error in deleting wrong data sent/Can't find Habit."
             })

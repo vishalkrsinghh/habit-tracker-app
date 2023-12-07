@@ -12,13 +12,13 @@ router.post("/home", require("../controller/createUser").login);
 
 router.get("/logout", require("../controller/registerController").logout)
 
-router.get("/home",authentication.auth,require("../controller/registerController").home );
+// router.get("/home",authentication.auth,require("../controller/registerController").home );
 
 router.post("/date/:date",authentication.auth, require("../controller/savehabitController").saveHabit);
 
 router.use("/date",authentication.auth,require("./getDate") );
 router.get("/allhabits",authentication.auth, require("../controller/showAllHabits").allHabits);
-              router.get("/api/cron", require("../api/cron").handler);//// this is for Vercel Deploy we can delete this 
+              router.get("/api/cron", require("../api/cron").handler);//// this route is for Vercel cron job (which will hit automatically) we can delete this if not deploy on vercel.
 router.post("/update_habit/:idToUpdate",authentication.auth, require("../controller/updateHabit").updateHabit);
 router.get("/delete_habit/:idToDelete",authentication.auth,require("../controller/deleteHabit").deleteHabit);
 router.get("/calendar", authentication.auth, require("../controller/calendarController").getCalendarPage);

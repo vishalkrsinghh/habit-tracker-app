@@ -27,6 +27,10 @@ module.exports.allHabits = async (req, res) => {
                 // let start=new Date(new Date().setDate(new Date().getDate()-7))
                 // let start=new Date(new Date().setDate(new Date().getDate()-6)); //// SET IT ALSO TO INDIAN DATE.
                 let start=new Date(new Date(new Date().setDate(new Date().getDate()-6)).setHours(new Date().getHours()+5,30)); //// SET IT ALSO TO INDIAN DATE.
+                console.log("Start backend = "," ",start);
+                // let start=new Date(new Date(new Date().setDate(new Date().getDate()-6))); //// SET IT ALSO TO INDIAN DATE.
+                // start.setHours(start.getHours()+5);
+                // start.setMinutes(start.getMinutes()+30);
                 for(let i=0; i<allHabits.length; i++){
                     let sevenDays= await completionModel.find({
 

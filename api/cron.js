@@ -1,4 +1,4 @@
-//// this all file is for Vercel Deploy we can delete this, make this because vercel has its own cron job. 
+//// this file is because vercel has its own cron job or I hosted it on vercel, if hosted anywhere else delete this file, it works on manually clicking on run button of cron in vercel website . 
 let habitCollectionModel = require("../model/habitModel");
 let completionModel = require("../model/completionModel");
 
@@ -14,6 +14,7 @@ module.exports.handler = async (req, res) => {
         currentYear = dt.getFullYear();
     
         if (allHabits) {
+            // if habits present in database then create object in completionModel for next day to all that habits.
             for (let i = 0; i < allHabits.length; i++) {
                 if (currentMonth < 10) {
                     currentMonth = "0" + currentMonth;
@@ -26,8 +27,8 @@ module.exports.handler = async (req, res) => {
                     habit: allHabits[i]._id
                 })
                 allHabits[i].completionStatus.push(completeStatus._id);
+                allHabits[i].save();
             }
-            allHabits.save();
     
             return res.status(200).json({
                 message: "OK "

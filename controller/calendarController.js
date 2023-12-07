@@ -2,6 +2,7 @@
 let jwt = require("jsonwebtoken");
 let completionModel = require("../model/completionModel");
 let habitCollectionModel = require("../model/habitModel");
+// for render Calendar page.
 module.exports.getCalendarPage = async (req, res) => {
 
     try {
@@ -29,33 +30,33 @@ module.exports.getCalendarPage = async (req, res) => {
 
 }
 
-
+// Send all days status of that habit.
 module.exports.getCalendar = async (req, res) => {
 
     try {
-                let id = req.query.id;
-                if(id){
-                    let data = await completionModel.find({ habit: id });
-                    if(data){
-                        res.status(200).json({
-                            message: "ok",
-                            data
-                        })
-                    }else{
-                        res.status(200).json({
-                            message: "Send the correct habit Id",
-                            data:[]
-                        })
-                    }
-                }else{
-                    res.redirect("back");
-                }
+        let id = req.query.id;
+        if (id) {
+            let data = await completionModel.find({ habit: id });
+            if (data) {
+                res.status(200).json({
+                    message: "ok",
+                    data
+                })
+            } else {
+                res.status(200).json({
+                    message: "Send the correct habit Id",
+                    data: []
+                })
+            }
+        } else {
+            res.redirect("back");
+        }
 
     } catch (error) {
         // console.log(error);
         res.status(200).json({
             message: "Send the correct habit Id",
-            data:[]
+            data: []
         })
     }
 

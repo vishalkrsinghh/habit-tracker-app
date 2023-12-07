@@ -1,3 +1,6 @@
+body{
+    background-color: rgb(187, 221, 233);
+}
 .form1,.addingHabit,#updatingHabit{
     display: flex;
     justify-content: center;

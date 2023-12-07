@@ -2,7 +2,7 @@ let userCollection = require("../model/userModel");
 
 let bcrypt = require("bcrypt");
 let jwt = require("jsonwebtoken");
-
+// create a new user account.
 module.exports.create = async (req, res) => {
 
     try {
@@ -29,11 +29,10 @@ module.exports.create = async (req, res) => {
                     let saltRounds = 10;
                     const salt = bcrypt.genSaltSync(saltRounds);
                     const hashPassword = bcrypt.hashSync(password, salt);
-                    let abc = await userCollection.create({ name, email, password: hashPassword });
+                    await userCollection.create({ name, email, password: hashPassword });
 
                     res.status(201).json({
-                        message: "Created SuccessFully",
-                        data: { abc }
+                        message: "Created SuccessFully, Go to Login/Register Page and Login Yourself"
                     })
 
                 }
@@ -58,9 +57,8 @@ module.exports.create = async (req, res) => {
         })
     }
 }
-
+// if user wants to login.
 module.exports.login = async (req, res) => {
-    // console.log("refresh");
     try {
         let { email, password } = req.body;
         email = email.toLowerCase();
@@ -76,19 +74,21 @@ module.exports.login = async (req, res) => {
 
                 if (isPasswordEqual) {
 
+                    // create/generate a token
                     let token = jwt.sign(
                         { email: user.email, _id: user._id },
                         process.env.JWT_SECRET_KEY,
                         { expiresIn: "60m" }
                     )
-                    // console.log("token set from backend",token);
+                    
+                    // save generated token in cookie of the browser.
                     res.cookie('jwtToken', token, { maxAge: 60 * 60 * 1000, httpOnly: true });  // 1000 means 1 sec, this cookie expires in 20 minutes as token expires in 20 minutes.
 
                     let date = new Date();
-                    date.setHours(date.getHours()+5);
-                    date.setMinutes(date.getMinutes()+30);
+                    date.setHours(date.getHours() + 5);
+                    date.setMinutes(date.getMinutes() + 30);
                     let todayDate = date.getDate();
-                    let currentMonth = date.getMonth()+1;
+                    let currentMonth = date.getMonth() + 1;
                     let currentYear = date.getFullYear();
                     // res.redirect("/home");
                     res.redirect(`/date/${todayDate}/?year=${currentYear}&&month=${currentMonth}`);
