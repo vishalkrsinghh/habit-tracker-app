@@ -34,8 +34,8 @@ module.exports.allHabits = async (req, res) => {
                 // d_t_.setHours(d_t_.getHours()+5);
                 // d_t_.setMinutes(d_t_.getMinutes()+30);
                 // let start=new Date(new Date(dt_.setDate(dt_.getDate()-6)).setHours(0,0,0)); ////Ye INDIAN ke hisab se set nahi hai SET IT ALSO TO INDIAN DATE. dont delete this if any error comes then watch here 
-                // let start=new Date(new Date(dt_.setDate(dt_.getDate()-7)).setHours(0,0,0)); ////Ye INDIAN ke hisab se set nahi hai SET IT ALSO TO INDIAN DATE.  dont delete this if any error comes then watch here 
-                let start=new Date(new Date(dt_.setDate(dt_.getDate()-8)).setHours(0,0,0)); ////Ye INDIAN ke hisab se set nahi hai SET IT ALSO TO INDIAN DATE.
+                let start=new Date(new Date(dt_.setDate(dt_.getDate()-7)).setHours(0,0,0)); ////Ye INDIAN ke hisab se set nahi hai SET IT ALSO TO INDIAN DATE.  dont delete this if any error comes then watch here 
+                // let start=new Date(new Date(dt_.setDate(dt_.getDate()-8)).setHours(0,0,0)); ////Ye INDIAN ke hisab se set nahi hai SET IT ALSO TO INDIAN DATE. dont delete this if any error comes then watch here 
                 // console.log("Start backend = "," ",start);
                 // india date ke hisab se set ho jaye to uske baad .setHours(0,0,0)); jaroor kario
                 // let start=new Date(new Date(new Date().setDate(new Date().getDate()-6))); //// SET IT ALSO TO INDIAN DATE.
