@@ -26,9 +26,16 @@ module.exports.allHabits = async (req, res) => {
                 let sevenDay=[]
                 // let start=new Date(new Date().setDate(new Date().getDate()-7))
                 // let start=new Date(new Date().setDate(new Date().getDate()-6)); //// SET IT ALSO TO INDIAN DATE.
-                // let start=new Date(new Date(new Date().setDate(new Date().getDate()-6)).setHours(new Date().getHours()+5,30)); //// SET IT ALSO TO INDIAN DATE.
-                let start=new Date(new Date(new Date().setDate(new Date().getDate()-6)).setHours(0,0,0)); //// SET IT ALSO TO INDIAN DATE.
+                // let start=new Date(new Date(new Date().setDate(new Date().getDate()-6)).setHours(new Date().getHours()+5,30)); ////Ye INDIAN ke hisab se set nahi hai SET IT ALSO TO INDIAN DATE.
+                let dt_ = new Date();
+                dt_.setHours(dt_.getHours()+5);
+                dt_.setMinutes(dt_.getMinutes()+30);
+                let d_t_ = new Date();
+                d_t_.setHours(d_t_.getHours()+5);
+                d_t_.setMinutes(d_t_.getMinutes()+30);
+                let start=new Date(new Date(dt_.setDate(dt_.getDate()-6)).setHours(0,0,0)); ////Ye INDIAN ke hisab se set nahi hai SET IT ALSO TO INDIAN DATE.
                 console.log("Start backend = "," ",start);
+                // india date ke hisab se set ho jaye to uske baad .setHours(0,0,0)); jaroor kario
                 // let start=new Date(new Date(new Date().setDate(new Date().getDate()-6))); //// SET IT ALSO TO INDIAN DATE.
                 // start.setHours(start.getHours()+5);
                 // start.setMinutes(start.getMinutes()+30);
@@ -46,6 +53,7 @@ module.exports.allHabits = async (req, res) => {
                 res.render("habitPage", {
                     allHabits,
                     start,
+                    d_t_,
                     date,
                     sevenDay,
                     todayDate,
