@@ -81,18 +81,10 @@ module.exports.saveHabit = async (req, res) => {
                     // Cron Job for creating new Object in completionModel for every next date, which will runs at 12:01  in night. 
                     // ('sec0-59 min0-59 hour0-23')
                     // I have researched and find that cron job runs more then 15 minutes on Paid version.
-                    // let taskJob = new CronJob('0 0 1 * * 0-6', async () => {  //IndianTimeZone (BECAUSE WE HAVE Passed ANOTHER PARAM AS 'Asia/Kolkata' it will runs on 01:00 at Midnight);
+                    // let taskJob = new CronJob('0 0 1 * * 0-6', async () => {  //IndianTimeZone ( 'Asia/Kolkata' it will runs on 01:00 at Midnight);
                     let taskJob = new CronJob('0 1 0 * * 0-6', async () => {  //IndianTimeZone (BECAUSE WE HAVE Passed ANOTHER PARAM AS 'Asia/Kolkata' it will runs on 12:01 at Midnight);
-                    // let taskJob = new CronJob('0 22 14 * * 0-6', async () => {  //indiantimezone (BECAUSE WE HAVE Passed ANOTHER PARAM AS 'Asia/Kolkata' it will runs on 02:22 at afternoon). 
+                    // let taskJob = new CronJob('0 22 14 * * 0-6', async () => {  //indiantimezone ( it will runs on 02:22 at afternoon). 
                     // let taskJob = new CronJob('0 */3 * * * 0-6', async () => {  // for testing purpose every 3 minutes.
-                    
-                    
-                    let now = new Date();
-                    now.setHours(now.getHours() + 5);
-                    now.setMinutes(now.getMinutes() + 30);
-                    let timeUntilMidnight= new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,0,0,0)-now;
-                    // Try to solve it by using setInterval take help from chat gpt 
-                    // and also change the color of background of the application for looks good.
 
                         let dt= new Date();
                         dt.setHours(dt.getHours()+5);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.

@@ -7,7 +7,7 @@ The Habit Tracker App is a web application, where anyone can create habits and t
 ## Deployment
 
 This App is Live on:- 
-( https://todo-list-m0e0.onrender.com )
+( https://habit-tracker-anq2.onrender.com )
  Paste this URL in your Browser 🌐.
 
 

@@ -10,9 +10,6 @@ module.exports.allHabits = async (req, res) => {
         let date = new Date();
         date.setHours(date.getHours()+5);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.
         date.setMinutes(date.getMinutes()+30);//// Hosting/server machine time is based on UTC so converted into INDIAN Time for server if we want to work locally we can comment it.
-        let todayDate = date.getDate();
-        let currentMonth = date.getMonth() + 1;
-        let currentYear = date.getFullYear();
         let tokenFromClient = req.cookies.jwtToken;
         if (tokenFromClient) {
             let decodedDataOfToken = await jwt.verify(tokenFromClient, process.env.JWT_SECRET_KEY);
@@ -24,23 +21,11 @@ module.exports.allHabits = async (req, res) => {
                 let allHabits = await habitCollectionModel.find({ user:isUser._id});
                 // console.log(allHabits.length, allHabits);
                 let sevenDay=[]
-                // let start=new Date(new Date().setDate(new Date().getDate()-7))
-                // let start=new Date(new Date().setDate(new Date().getDate()-6)); //// SET IT ALSO TO INDIAN DATE.
-                // let start=new Date(new Date(new Date().setDate(new Date().getDate()-6)).setHours(new Date().getHours()+5,30)); ////Ye INDIAN ke hisab se set nahi hai SET IT ALSO TO INDIAN DATE.
                 let dt_ = new Date();
                 dt_.setHours(dt_.getHours()+5);
                 dt_.setMinutes(dt_.getMinutes()+30);
-                // let d_t_ = new Date();
-                // d_t_.setHours(d_t_.getHours()+5);
-                // d_t_.setMinutes(d_t_.getMinutes()+30);
-                // let start=new Date(new Date(dt_.setDate(dt_.getDate()-6)).setHours(0,0,0)); ////Ye INDIAN ke hisab se set nahi hai SET IT ALSO TO INDIAN DATE. dont delete this if any error comes then watch here 
-                let start=new Date(new Date(dt_.setDate(dt_.getDate()-7)).setHours(0,0,0)); ////Ye INDIAN ke hisab se set nahi hai SET IT ALSO TO INDIAN DATE.  dont delete this if any error comes then watch here 
-                // let start=new Date(new Date(dt_.setDate(dt_.getDate()-8)).setHours(0,0,0)); ////Ye INDIAN ke hisab se set nahi hai SET IT ALSO TO INDIAN DATE. dont delete this if any error comes then watch here 
-                // console.log("Start backend = "," ",start);
-                // india date ke hisab se set ho jaye to uske baad .setHours(0,0,0)); jaroor kario
-                // let start=new Date(new Date(new Date().setDate(new Date().getDate()-6))); //// SET IT ALSO TO INDIAN DATE.
-                // start.setHours(start.getHours()+5);
-                // start.setMinutes(start.getMinutes()+30);
+                let start=new Date(new Date(dt_.setDate(dt_.getDate()-7)).setHours(0,0,0)); 
+                // Getting status of last seven days of each habits.
                 for(let i=0; i<allHabits.length; i++){
                     let sevenDays= await completionModel.find({
 
@@ -50,19 +35,12 @@ module.exports.allHabits = async (req, res) => {
                     })
                     sevenDay.push(sevenDays);
                 }
-                for(let u=0; u<sevenDay[2].length; u++){
-                    console.log(sevenDay[2][u]);
-                }
                 // console.log(sevenDay);
 
                 res.render("habitPage", {
                     allHabits,
-                    start,
                     date,
                     sevenDay,
-                    todayDate,
-                    currentMonth,
-                    currentYear,
                     days
                 });
             }
