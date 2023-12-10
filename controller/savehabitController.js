@@ -28,7 +28,7 @@ module.exports.saveHabit = async (req, res) => {
                 let todayDate = date1.getDate();
                 let currentMonth = date1.getMonth() + 1;
                 let currentYear = date1.getFullYear();
-                console.log( "INDIAN date1= "," ",date1);
+                // console.log( "INDIAN date1= "," ",date1);
 
                 if (month < 10) {
                     month = "0" + month;
